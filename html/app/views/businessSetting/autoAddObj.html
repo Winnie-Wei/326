@@ -1,0 +1,114 @@
+<div class="box pd10" ng-init="AutoAddObjsInit();">
+	<!-- 面包屑 -->
+	<div>
+		<ol class="breadcrumb">
+			<li>
+				<i class="icon-breadcrumb"></i>
+				<a>业务设置</a>
+			</li>
+			<li>/</li>
+			<li class="active">
+				<a>全局配置</a>
+			</li>
+			<li>/</li>
+			<li class="active">
+				<a>智能添加保护对象</a>
+			</li>
+		</ol>
+	</div>
+	<!-- 保护对象列表-->
+	<div class="block-container">
+		<div class="blue-border-panel clearfix">
+			<div>
+				<div class="colum-title">智能添加保护对象</div>
+			</div>
+			<div>
+				<div class="clearfix action-bar pdl20 pdr10">
+					<div class="pull-left pdt5">
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="backToList();">返回</a>
+					</div>
+				</div>
+
+				<div>
+					<HR class="hr-style"></HR>
+				</div>
+
+				<div class="form-group clearfix mgb20">
+					<label class="control-label col-md-1 txt-right auto-add-label">待扫描地址串：
+						<span class="sign-must">*</span>
+					</label>
+					<div class="col-md-5 mgl20">
+						<textarea class="form-textarea" ng-model="cache.nodeObj.scanAddress"></textarea>
+					</div>
+					<div class="col-md-5 pdl0 pdr0">
+						<span>提示：</span>
+						</br>
+						<span class="pdl30">1 每行为一个配置串,以分号结尾</span>
+						</br>
+						<span class="pdl30">2 配置串格式为IP:PORT，PORT指定为0，表示所有端口;，</span>
+						</br>
+						<span style="margin-left:42px;">比如：192.168.1.100:1521;</span>
+						</br>
+						<span class="pdl30">3 IP段中间用-连接，端口多个用逗号分隔</span>
+						</br>
+						<span style="margin-left:42px;">比如：192.168.11.1-192.168.11.100:1521,1522,1523;</span>
+						</br>
+					</div>
+					<div class="col-md-offset-1 col-md-9 mgt10 pdl35">
+						<a role="button" class="btn btn-normal function-btn mgr20" ng-click="scanIPFunc();">探测 / 停止探测</a>
+						<span>提示：系统会在探测10分钟后停止探测，您也可以点击按钮主动停止探测</span>
+					</div>
+
+					<div ng-show="cache.scanObjList.length !== 0">
+						<div class="col-md-offset-1 col-md-11 mgt15 pdl35">
+							<div class="pull-left pdt5">
+								<a role="button" class="btn btn-normal function-btn mgr10" ng-click="NewObj();">新建保护对象</a>
+								<a role="button" class="btn btn-normal function-btn mgr10" ng-click="NewExistObj();">添加到已有保护对象</a>
+							</div>
+						</div>
+						<div class="col-md-offset-1 col-md-11 pdl35">
+							<HR class="hr-style"></HR>
+						</div>
+
+						<div class="col-md-offset-1 col-md-10 pdl35">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>
+											<input type="checkbox" ng-model="initData.scanList.checkAll"  ng-change="selectAll(initData.scanList.checkAll,cache.scanObjList)"/>
+										</th>
+										<th>名称</th>
+										<th>所属保护对象</th>
+										<th>数据库类型</th>
+										<th>数据库版本号</th>
+										<th>ip地址</th>
+										<th>端口号</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in cache.scanObjList">
+										<td class="list-top-checkbox">
+											<input ng-disabled="checkIsChosen(item);" type="checkbox" ng-change="selectOne(cache.scanObjList,initData.scanList)" ng-model="item.checked" />
+										</td>
+										<td ng-bind="item.host + ':' + item.port"></td>
+										<td ng-bind="item.obj_name"></td>
+										<td ng-bind="item.db_type"></td>
+										<td ng-bind="item.version"></td>
+										<td ng-bind="item.host"></td>
+										<td ng-bind="item.port"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="J_autoNewObj" modal-directive>
+		<div ng-include="'views/businessSetting/protectObj/modal_newObj.html'"></div>
+	</div>
+	<div id="J_autoExistObj" modal-directive>
+		<div ng-include="'views/businessSetting/protectObj/modal_newExistObj.html'"></div>
+	</div>
+</div>

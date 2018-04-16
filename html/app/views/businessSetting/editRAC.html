@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-lg-12">
+        <form class="input-custom form-horizontal" novalidate>
+            <div class="form-group">
+                <label class="control-label col-lg-3 txt-right">节点IP地址：<span class="sign-must">*</span></label>
+                <div class="col-lg-8">
+                    <input class="form-control" type="text" placeholder="请输入节点IP地址或者域名" ng-model="cache.racCache.racIp" />
+                     <div class="validate-container">
+                        <span ng-show="rac_ip_blank_e">请输入节点IP地址</span>
+                        <span ng-show="rac_ip_val_e">IP地址格式不正确</span>
+                    </div>
+                </div>
+                <label class="control-label col-lg-3 txt-right">节点端口：<span class="sign-must">*</span></label>
+                <div class="col-lg-8">
+                    <input class="form-control" type="text" placeholder="请输入节点服务端口" ng-model="cache.racCache.racPort" />
+                     <div class="validate-container">
+                        <span ng-show="rac_port_blank_e">请输入节点端口</span>
+                        <span ng-show="rac_port_val_e">节点端口格式不正确</span>
+                    </div>
+                </div>
+                <label class="control-label col-lg-3 txt-right">节点SID：<span class="sign-must">*</span></label>
+                <div class="col-lg-8">
+                    <input class="form-control" type="text" placeholder="请输入节点SID" ng-model="cache.racCache.racSid" />
+                     <div class="validate-container">
+                        <span ng-show="rac_sid_blank_e">请输入节点SID</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 txt-center">
+                    <div class="validate-container">
+                        <span ng-show="rac_info_exist_e">rac信息已存在</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

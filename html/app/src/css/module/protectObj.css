@@ -1,0 +1,214 @@
+/*保护对象页面*/
+.userlistContent{
+	margin: 0 0 0 30px;
+	line-height: 25px;
+}
+.formWidth_protectObj{
+	width:270px !important;
+	float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.whiteTheme .ui-mprogress .indeter-bar{
+	/*width: 60%;*/
+}
+.whiteTheme .modal-dialog{
+	margin:132px auto;
+}
+/*testLink*/
+
+.modal-testLink{
+	position:relative;
+	height:160px;
+}
+.testLink-info{
+	text-align: lefts;
+    margin-bottom: 3px;
+    width: 160px;
+    position: absolute;
+    right: 0px;
+    top: 10px;
+}
+.testLink-left{
+	position:absolute;
+	bottom:36px;
+	left:55px;
+	text-align:center;
+}
+.testLink-right{
+	position:absolute;
+	bottom:36px;
+	text-align:center;
+	right:50px;
+}
+.testLink-line{
+	width:361px;
+	height:3px;
+	position:absolute;
+	left:101px;
+	bottom:80px;
+	background-color: #b0d0ef;
+	overflow: hidden;
+}
+.testLink-line-block{
+	width:50px;
+	height:3px;
+	background-color: #3a81f0;
+	margin-left: 0;
+}
+.testLink-line-end{
+	width:361px;
+	height:3px;
+	position:absolute;
+	left:101px;
+	bottom:80px;
+	background-color:#0091db;
+}
+.testLink-result{
+	width:95%;
+	position:absolute;
+	bottom:0px;
+	text-align:center;
+}
+
+.asset-detail-name{
+	display:inline-block;
+	width:80px;
+	text-align:right;
+}
+.sidebar-normal-state .sub-panel-content{
+	position:absolute;
+	top:0;
+	bottom:0;
+	right: 0;
+	overflow: hidden;
+	overflow-y: auto;
+	left: 150px;
+	background-color:#f5f5f5;
+	z-index:auto;
+	padding-left:10px;
+	-o-transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -webkit-transition: all 0.1s ease;
+}
+.sidebar-close-state .sub-panel-content{
+	position:absolute;
+	top:0;
+	bottom:0;
+	right: 0;
+	overflow: hidden;
+	overflow-y: auto;
+	left: 150px;
+	background-color:#f5f5f5;
+	z-index:auto;
+	padding-left:10px;
+	-o-transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -webkit-transition: all 0.1s ease;
+}
+/*sub-sidebar*/
+.sidebar-normal-state .sub-sidebar{
+	height:100%;
+	width:150px;
+	background:#bbb;
+	position:absolute;
+	top: 0;
+	left:0;
+    bottom: 0px;
+    -o-transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -webkit-transition: all 0.1s ease;
+    overflow:hidden;
+}
+.sidebar-close-state .sub-sidebar{
+	height:100%;
+	width:150px;
+	background:#bbb;
+	position:absolute;
+	top: 0;
+	left:0;
+    bottom: 0px;
+    -o-transition: all 0.1s ease;
+    -ms-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -webkit-transition: all 0.1s ease;
+    overflow:hidden;
+}
+.sub-sidebar-back{
+	height:80px;
+	line-height:112px;
+	text-align:center;	
+	border-bottom:1px solid #fff;
+	background-color:#ababab;
+}
+.sub-sidebar-back:hover, .sub-sidebar-back:active{
+	background-color:#9a9a9a;
+}
+.sub-sidebar-back-icon{
+	width: 40px;
+    height: 40px;
+	background: url(../../images/arrow/back-arrow.png) no-repeat center center;
+	display:inline-block;
+	background-size:100%;	
+	transform:rotate(180deg);
+    -ms-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+}
+.sub-sidebar-link{
+	width:100%;
+    height: 40px;
+    line-height:40px;  
+    display:block;
+    padding-left: 30px;
+}
+.sidebar-item .sub-active{
+	background-color:#fff;
+}
+.sub-sidebar-name{
+	color:#fff;
+	font-size:14px;
+	font-family:'微软雅黑';
+}
+.sidebar-item .sub-active .sub-sidebar-name{
+	color:#333;
+}
+.dbtype-icon-oracle{
+	width:30px;
+	height:30px;
+	background:url(../../images/icons/test-icon2.png) no-repeat center center;
+	display:inline-block;
+	background-size: 100%;
+	float:left;
+    margin:15px 10px 15px 30px;
+}
+.db-simple-detail{
+	width:calc( 100% - 10px );
+	height:60px;
+	line-height:80px;
+	margin-bottom:10px;
+	background-color:#fff;
+}
+.db-detail-info{
+	display:inline-block;
+	height:60px;
+	line-height:60px;
+	float: left;
+}
+.db-detail-info span{
+	color:#0091DB;
+	font-size:16px;
+	font-weight:bold;
+}
+.assetDetail-colum{
+	line-height:30px;
+	height:30px;
+}
+.auto-add-label{
+	font-weight:normal;
+	white-space:nowrap;
+}

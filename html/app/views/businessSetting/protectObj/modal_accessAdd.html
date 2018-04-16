@@ -1,0 +1,42 @@
+<div>
+	<div>
+		<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="goUpStep();">上一步</button>
+		<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-hide="addAccessStep == '3'" ng-click="goDownStep();">下一步</button>
+		<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-show="addAccessStep == '3'" >完成</button>
+	</div>
+	<div>
+		<HR class="hr-pop-style"></HR>
+	</div>
+	<step-directive steplists="accessStepList" defaultstep="addAccessStep"></step-directive>
+	<div class="mgt80" ng-show="addAccessStep == '1'">
+		<div class="txt-center">请点击下载SQL脚本，该脚本用于收集数据库中的资产，包括SCHEMA，表结构，存储过程，触发器等，不会收集数据</div>
+		<div class="mgt15 mgb20" style="margin-left:116px;">
+			<button role="button" class="btn btn-normal btn-blue btn-xs mgr10">下载SQL脚本</button>
+		</div>
+	</div>
+	<div class="mgt80"  ng-show="addAccessStep == '2'">
+		<div class=" mgb20" style="margin-left:116px;">
+			<label class="radio-inline mgt5 mgr20">
+			   <input type="radio" name="importMode" ng-model="importMode" value="0"> 粘贴结果
+			</label>
+			<label class="radio-inline" style="margin-top:5px;">
+			   <input type="radio" name="importMode" ng-model="importMode" value="1"> 上传文件 
+			</label>
+		</div>
+	</div>
+	<div ng-show="addAccessStep == '3' && importMode == '0' ">
+		<div class=" mgb20" style="margin-left:116px;">
+			<div class="txt-left">请在下框中粘贴执行的结果</div>
+			<div>
+				<textarea style="width:700px;height:200px;resize:none;"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="mgt80"  ng-show="addAccessStep == '3' && importMode == '1' ">
+		<div class="clearfix mgb20 input-custom import-input" style="margin-left:116px;">
+			<div class="form-group col-md-10">
+                <input id="J_accessFileUpload" type="file" class="file" >
+            </div>
+		</div>
+	</div>
+</div>

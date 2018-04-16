@@ -1,0 +1,10 @@
+<div class="colum-title clearfix colum-title-slide" ng-class="sidebarCloseClass();" ng-click="toggleTitle();" ng-init="init();">
+	<div class="pull-left mgr30" ng-bind="titlename"></div>
+	<div class="pull-left" ng-hide="titleTextKey">
+		<span ng-repeat="item in itemTemp">
+			<span class="" ng-class="{true:'', false:'splice-icon icon'}[ $index == 0 ]"></span>
+			<span>{{item.label}}：{{item.value}}</span>
+		</span>
+	</div>
+	<div ng-class="{true:'toggle-colum-title-down', false: 'toggle-colum-title-up'}[togglekey]"></div>
+</div>

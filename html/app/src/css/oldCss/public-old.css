@@ -1,0 +1,74 @@
+.mtab{height:30px;float:left;text-align:center;list-style:none;line-height:30px;border:#C7DAF1 1px solid;border-top-width:0px;border-bottom-color:#D8E0E9;margin:0px -1px -1px 0px;background: url(../../images/box/mtab_bj.png) repeat-x;}
+.mtabon{height:28px;float:left;text-align:center;list-style:none;line-height:28px;border:#C7DAF1 1px solid;border-bottom-color:#FAFAFA;border-top:2px solid #0B7AAA;margin:0px -1px -1px 0px;background:url(../../images/box/mtab_bj_on.png) repeat-x; font-weight:bold;}
+
+.mtab-tab{height:24px; line-height:24px; background:none; border:0px;float:left;text-align:center;list-style:none;border-bottom-color:#D8E0E9;margin:0px -1px -1px 0px;padding:0 10px;}
+.mtabon-tab{ height:24px; line-height:24px;float:left;text-align:center;list-style:none;border:#C7DAF1 1px solid;border-bottom-color:#FAFAFA;margin:0px -1px -1px 0px;background:url(../../images/mtab_bj_on.png) repeat-x; font-weight:bold; padding:0 10px;}
+
+.form-button{ background:url(../../images/box/searchButtonBj.png) repeat-x; height:25px; line-height:20px; width:70px; margin:0px; padding:0px; color:#FFFFFF; border:1px solid #D2DDEF;cursor:pointer;}
+
+.tab-div {
+    height: 90%;
+}
+.tab-div {
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #B0CBEC;
+    position: relative;
+    top: 10px;
+}
+.mnav ul {
+    height: 30px;
+    margin: 0px 0px 0px 2px;
+    background: url(../../images/box/mtab_bj.png) repeat-x;
+}
+.mnav ul {
+    height: 30px;
+    margin: 0px 0px 0px 2px;
+}
+.mnav li {
+    cursor: pointer;
+}
+.mnav li {
+    cursor: pointer;
+}
+.mtabon {
+    width: 106px;
+}
+.mtab {
+    width: 106px;
+}
+.mtabon {
+    height: 28px;
+    float: left;
+    text-align: center;
+    list-style: none;
+    line-height: 28px;
+    border: #C7DAF1 1px solid;
+    border-bottom-color: #FAFAFA;
+    border-top: 2px solid #0B7AAA;
+    margin: 0px -1px -1px 0px;
+    background: url(../../images/box/mtab_bj_on.png) repeat-x;
+    font-weight: bold;
+}
+.mnav li a {
+    color: #0055bb;
+    text-decoration: none;
+}
+.mnav li a {
+    color: #0055bb;
+    text-decoration: none;
+}
+#service_msg_banner {
+    overflow-y: auto;
+    height: 83%;
+}
+.reStart-all-service #J_host_stop {
+    float: right;
+    margin-right: 10px;
+    width: 100px;
+    margin-top: 10px;
+}
+.div_cen{
+	font-size:12px;
+}

@@ -1,0 +1,113 @@
+<div class="box pd10" ng-init="addProtectObjInit();">
+	<!-- 面包屑 -->
+	<div>
+		<ol class="breadcrumb">
+			<li><i class="icon-breadcrumb"></i><a>业务设置</a></li>
+			<li>/</li>
+			<li class="active"><a ui-sref="main.protectObject">保护对象</a></li>
+			<li>/</li>
+			<li class="active"><a>添加保护对象</a></li>
+		</ol>
+	</div>
+	<div class="block-container">
+		<div class="blue-border-panel" style="position:relative;">
+			<div>
+				<div class="colum-title">添加保护对象</div>
+			</div>
+			<div class="clearfix pdl20 mg10">
+				<div class="pull-left pdt5">
+					<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="submitNewObj(initData.nodeList, cache.nodeList);">保存</button>
+					<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="cancleAddPO();">取消</button>
+				</div>
+			</div>
+			<div>
+				<HR class="hr-style"></HR>
+			</div>
+			<div class="row pdb20">
+				<form class="col-md-12">
+					<div class="clearfix mgb10">
+						<label class="search-label form-label">添加类型：<span class="sign-must">*</span></label>
+						<div class="form-input-style">
+							<label class="radio-inline mgt5">
+							  <input type="radio" name="protectObjType" ng-model="initData.protectInfo.object_type" value="1">数据库分组  
+							</label>
+							<label class="radio-inline mgt5">
+							  <input type="radio" name="protectObjType" ng-model="initData.protectInfo.object_type" value="2">数据库集群（节点之间共享资产）  
+							</label>
+						</div>
+					</div>
+					<div class="clearfix mgb10">
+						<label class="search-label form-label">名称/前缀：<span class="sign-must">*</span></label>
+						<div class="form-input-style col-md-6">
+							<input type="text" class="form-control" placeholder="该名称/前缀用于在本系统中显示" maxlength="15" ng-model="initData.protectInfo.name"> 
+						</div>
+					</div>
+					<div class="clearfix mgb10">
+						<label class="search-label form-label">数据库类型：<span class="sign-must">*</span></label>
+						<div class="form-input-style col-md-6">
+							<label class="radio-inline mgt5">
+							  <input type="radio" name="dbType" ng-model="initData.protectInfo.db_type" value="oracle">Oracle 
+							</label>
+							<label class="radio-inline mgt5">
+							  <input type="radio" name="dbType" ng-model="initData.protectInfo.db_type" value="sqlserver">SQL Server 
+							</label>
+							<label class="radio-inline mgt5">
+							  <input type="radio" name="dbType" ng-model="initData.protectInfo.db_type" value="mysql">MySQL 
+							</label>
+							<label class="radio-inline mgt5">
+							  <input type="radio" name="dbType" ng-model="initData.protectInfo.db_type" value="db2">DB2 
+							</label>
+						</div>
+					</div>
+					<div class="clearfix mgb20">
+						<div class="col-lg-6 col-md-6" style="margin-left:12%;">
+							<a role="button" class="btn btn-normal function-btn mgr20" ng-click="addNewNodes();">地址添加</a>
+							<a role="button" class="btn btn-normal function-btn" ng-click="addNewNodes_scan();">扫描添加</a>
+						</div>
+					</div>
+					<div class="clearfix" ng-if="cache.nodeList.length != 0">
+						<div class="col-lg-9 col-md-9 mgt5"  style="margin-left:12%;">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<tr>
+											<th><input type="checkbox" ng-model="initData.nodeList.checkAll" ng-change="selectAll(initData.nodeList.checkAll,cache.nodeList,'node')"/></th>
+											<th>名称</th>
+											<th>所属保护对象</th>
+											<th>数据库类型</th>
+											<th>数据库版本号</th>
+											<th>ip地址</th>
+											<th>端口号</th>
+											<th>操作</th>
+										</tr>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in cache.nodeList">
+										<td class="list-top-checkbox" ><input type="checkbox" ng-change="selectOne(cache.nodeList,initData.nodeList)" ng-model="item.checked"/></td>
+										<td ng-bind="item.name"></td>
+										<td ng-bind="item.obj_name ? item.obj_name : '-'"></td>
+										<td ng-bind="item.db_type ? item.db_type : '-'"></td>
+										<td ng-bind="item.version ? item.version : '-'"></td>
+										<td ng-bind="item.host"></td>
+										<td ng-bind="item.port"></td>
+										<td class="col-operate">
+											<a class="table-btn" role="button" ng-click="deleteNode($index);">删除</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<pager-directive pager="pager" func="'getProtectObjs'" format-state="''" pslgst="pslgst"></pager-directive>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="J_addPORac" modal-directive>
+			<div ng-include="'views/businessSetting/protectObj/addPORac.html'"></div>
+		</div>
+		<div id="J_addPORac_scan" modal-directive>
+			<div ng-include="'views/businessSetting/protectObj/addPORac_scan.html'"></div>
+		</div>
+	</div>
+</div>

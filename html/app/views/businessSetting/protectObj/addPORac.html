@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-lg-12" style="margin-left:-12px;">
+        <form class="input-custom form-horizontal" name="addRac" novalidate>
+            <div class="form-group">
+                <label class="control-label col-lg-3 txt-right">名称：<span class="sign-must">*</span></label>
+                <div class="col-lg-9">
+                    <input class="form-control" type="text" name="racIP" placeholder="该名称/前缀用于在本系统中显示" ng-model="cache.nodeObj.nodeName" required/>
+                    <div class="validate-container">
+                    	<span></span>
+                    </div>
+                </div>
+                <label class="control-label col-lg-3 txt-right">数据库地址串：<span class="sign-must">*</span></label>
+                <div class="col-lg-9">
+                    <input class="form-control" type="text" name="racPort" placeholder="地址串" ng-model="cache.nodeObj.address" required />
+                    <div class="validate-container">
+                    </div>
+                </div>
+                <label class="control-label col-lg-3 txt-right"><span class="sign-must"></span></label>
+                <div class="col-lg-9">
+                   	<span>提示：</span></br>
+					<span class="pdl30">1 配置串格式为IP:PORT</span></br>
+					<span style="margin-left:42px;">比如：192.168.1.100:1521</span></br>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

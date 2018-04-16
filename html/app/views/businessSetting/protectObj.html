@@ -1,0 +1,397 @@
+<div class="box" ng-init="init();">
+	<!-- 面包屑 -->
+	<div>
+		<ol class="breadcrumb">
+			<li><i class="icon-breadcrumb"></i><a>业务设置</a></li>
+			<li>/</li>
+			<li class="active"><a ng-click="blockFlag = 0">保护对象</a></li>
+			<li>/</li>
+			<li class="active" ng-show="blockFlag == 0">保护对象列表</li>
+			<li class="active" ng-show="blockFlag == 1">保护对象配置</li>
+			<li class="active" ng-show="blockFlag == 2">保护对象详情</li>
+		</ol>
+	</div>
+	<!-- 保护对象列表-->
+	<div class="block-container" ng-show="blockFlag == 0">
+		<div class="blue-border-panel" style="position:relative;">
+			<div class="">
+				<div class="colum-title">保护对象列表</div>
+			</div>
+			<div class="clearfix pdl20 mg10">
+				<div class="pull-left mgr10 form-horizontal mgl20">
+					<label class="checkbox" for="J_checkAll">
+						<input type="checkbox" id="J_checkAll"  ng-model="checkAll" ng-change="selectAll()" />
+					</label>
+				</div>
+				<div class="pull-left pdt5">
+					<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="editObj('add');">添加</a>
+					<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="setStatus(1);">启用</a>
+					<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="setStatus(0);">禁用</a>
+					<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="deletObj();">删除</a>
+				</div>
+			</div>
+			<div>
+				<HR class="hr-style"></HR>
+			</div>
+			<table class="table table-bordered table-hover table-layout">
+				<thead>
+					<tr>
+						<th></th>
+						<th>名称</th>
+						<th>运行状态</th>
+						<th>数据库类型</th>
+						<th>数据库版本号</th>
+						<th>IP地址</th>
+						<th>端口号</th>
+						<th>实例名</th>
+						<th>数据库用户</th>
+						<!-- <th>数据来源</th> -->
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="text-center listEmpty" ng-show="cache.ObjList.length==0">
+                        <td colspan="11"><span class="listEmpty-img"></span>没有保护对象信息</td>
+                    </tr>
+					<tr ng-repeat="item in cache.ObjList">
+						<td class="list-top-checkbox"><input type="checkbox" name="id"  value="{{item.id}}" ng-change="selectOne()" ng-model="item.checked"/></td>
+						<td>{{item.name}}</td>
+						<td><img src="/capaa/html/app/src/images/icons/actStatus{{item.status}}.png" class="mgr10" style="margin-top:-2px;" />{{item.status == 0 ? '禁用' : '启用'}}</td>
+						<td>{{item.dbtypeView}}</td>
+						<td>{{!item.version ? '-' : item.raclist.length==0 ? item.version : item.version +'(RAC)'}}</td>
+						<td>{{item.hostname}}</td>
+						<td>{{item.port}}</td>
+						<td>{{item.service ? item.service : '-'}}</td>
+						<td>{{item.userName ? item.userName : '-'}}</td>
+						<!-- <td>{{!item.dataForm ? '-' : item.dataForm == 0 ? '云镜像' : '网络镜像'}}</td> -->
+						<td class="col-operate">
+							<a class="table-btn" role="button" ng-click="objDetail(item.id);">详情</a>
+							<a class="table-btn" role="button" ng-click="editObj('edit',item)">编辑</a>
+							<a class="table-btn" role="button" ng-click="setStatus(1,item.dbid,item.status);" ng-show="item.status == 0">启用</a>
+							<a class="table-btn" role="button" ng-click="setStatus(0,item.dbid,item.status);" ng-hide="item.status == 0">禁用</a>
+							<a class="table-btn" role="button" ng-click="deletObj(item.dbid);">删除</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<pager-directive pager="pager" func="'getProtectObjs'" format-state="''" pslgst="pslgst"></pager-directive>
+		</div>
+	</div>
+	<!-- 探测到的数据库实例-->
+	<div class="block-container" ng-show="blockFlag == 1">
+		<div class="blue-border-panel" style="position:relative;">
+			<div class="">
+				<div class="colum-title">探测到的数据库实例</div>
+			</div>
+			<div class="clearfix pdl20 mg10">
+				<div class="pull-left pdt5">
+					<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="saveEditInfo();">保存</button>
+					<!-- <button role="button" class="btn btn-normal btn-blue btn-xs mgr10">禁用</button> -->
+					<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="blockFlag = 0;init();">返回</button>
+				</div>
+			</div>
+			<div>
+				<HR class="hr-style"></HR>
+			</div>
+			<div class="row protect-form">
+				<form class="col-md-12 input-custom" name="ObjForm">
+					<div class="clearfix">
+						<span class="col-md-2 txt-right mgb10 bold-font">基础信息：<span class="sign-must"></span></span>
+					</div>
+					<div class="clearfix mgb10">
+						<label class="col-md-2 search-label txt-right">
+							保护对象名称：<span class="sign-must">*</span>
+						</label>
+						<div class="formWidth_protectObj">
+							<input type="text" class="form-control" placeholder="该名称用于在本系统中显示" ng-model="Obj.init.objInfo.dbname" maxlength="15"> 
+						</div>
+						<div class="col-md-3 validate-container search-label">
+						     <div ng-show="infoName_blank">请输入保护对象名称</div>
+						     <div ng-show="infoName_Err">请输入不超过15位的字母、数字、中文、下划线组合</div>
+						 </div>
+					</div>
+					<div class="clearfix mgb10">
+						<label class="col-md-2 search-label txt-right">
+							数据库类型：<span class="sign-must">*</span>
+						</label>
+						<div class="col-md-2 formWidth_protectObj" style="width:16.66667%;">
+							<select id="J_dbtypeSelect" class="form-control" name="objType" ng-change="chooseDbType(Obj.init.objInfo.dbtypeShow);" ng-model="Obj.init.objInfo.dbtypeShow" ng-disabled="editKey == 'edit'">
+								<option value="">请选择数据库类型</option>
+								<option value="oracle">Oracle</option>
+								<option value="mysql">MySQL</option>
+								<option value="sqlserver">SQL Server</option>
+								<option value="db2">DB2</option>
+								<option value="oracle_audit" ng-if="editKey == 'edit'">Oracle</option>
+								<!-- <option value="sybase">Sybase</option>
+								<option value="postgresql">PostgreSQL</option> -->
+							</select>
+							<label class="select-btn"></label> 
+						</div>
+						<div class="col-md-2 validate-container search-label">
+						     <div ng-show="infoType_blank ">请选择数据库类型</div>
+						 </div>
+					</div>
+					<div class="clearfix mgb10">
+						<label class="col-md-2 search-label txt-right">
+							服务器地址：<span class="sign-must">*</span>
+						</label>
+						<div class="formWidth_protectObj">
+							<input type="text" class="form-control" placeholder="请输入数据库的IP地址或域名" ng-model="Obj.init.objInfo.ip"> 
+						</div>
+						<div class="col-md-2 validate-container search-label">
+						     <div ng-show="infoIP_blank">请输入服务器地址</div>
+						     <div ng-show="infoIP_val">服务器地址格式不正确</div>
+						 </div>
+					</div>
+					<div class="clearfix mgb10">
+						<label class="col-md-2 search-label txt-right">
+							端口：<span class="sign-must">*</span>
+						</label>
+						<div class="formWidth_protectObj">
+							<input type="text" class="form-control" placeholder="请输入数据库服务端口" ng-model="Obj.init.objInfo.port"> 
+						</div>
+						<div class="col-md-2 validate-container search-label">
+						     <div ng-show="infoPort_blank">请输入端口</div>
+						     <div ng-show="infoPort_val">端口格式不正确</div>
+						 </div>
+					</div>
+					<div class="clearfix mgb10" ng-show="Obj.init.objInfo.dbtypeShow == 'db2'">
+						<label class="col-md-2 search-label txt-right">
+							数据库名：<span class="sign-must">*</span>
+						</label>
+						<div class="formWidth_protectObj">
+							<input type="text" class="form-control" placeholder="请输入数据库名" name="objSid" ng-model="Obj.init.objInfo.sid"> 
+						</div>
+						<div class="col-md-2 validate-container search-label">
+					     	<div ng-show="sidVal_db2">请输入数据库名！</div>
+					 	</div>
+					</div>
+					<div class="clearfix mgb10" ng-show="racFlag">  
+						<div class="clearfix mgb10">
+							<label class="col-md-2 search-label txt-right">
+								实例名：<span class="sign-must"></span>
+							</label>
+							<div class="formWidth_protectObj">
+								<input type="text" class="form-control" placeholder="请输入数据库SID或者实例名" name="objSid" ng-model="Obj.init.objInfo.sid"> 
+							</div>
+							<div class="col-md-2 validate-container search-label">
+						     	<div ng-show="sidVal">实例名和服务名请至少填一项！</div>
+						 	</div>
+						</div>
+						<div class="clearfix mgb10">
+							<label class="col-md-2 search-label txt-right" >
+								服务名：<span class="sign-must"></span>
+							</label>
+							<div class="formWidth_protectObj">
+								<input type="text" class="form-control" placeholder="请输入数据库的服务名" ng-model="Obj.init.objInfo.servicename" name="objSer"> 
+							</div>
+						</div>					
+						<div class="col-md-offset-2 col-lg-9 col-md-9 clearfix">
+							<a role="button" class="pull-left btn btn-normal function-btn mgr20" ng-click='addRACPop();'>添加RAC节点</a>
+							<span class="col-md-3 validate-container search-label" ng-show="racVal">请完整填写Rac信息</span>
+						</div>
+						<div class="col-md-offset-2 col-lg-10 col-md-10 mgt10">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>节点名称</th>
+										<th>使用状态</th>
+										<th>IP地址</th>
+										<th>端口</th>
+										<th>SID</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="text-center listEmpty" ng-show="cache.racList.length==0">
+				                        <td colspan="6"><span class="listEmpty-img"></span>没有RAC信息</td>
+				                    </tr>
+									<tr ng-repeat="item in cache.racList track by $index">
+										<td>RAC节点{{$index+1}}</td>
+										<td><img img src="/capaa/html/app/src/images/icons/actStatus{{item.status}}.png" class="mgr10" style="margin-top:-2px;" >{{item.status == 0?'禁用中':'启用中'}}</td>
+										<td>{{item.racIp}}</td>
+										<td>{{item.racPort}}</td>
+										<td>{{item.racSid}}</td>
+										<td class="col-operate">
+											<a class="table-btn" role="button" ng-click="editRac($index);">编辑</a>
+											<a class="table-btn" role="button" ng-click="setRacStatus('1',$index)">启用</a>
+											<a class="table-btn" role="button" ng-click="setRacStatus('0',$index)">禁用</a>
+											<a class="table-btn" role="button" ng-click="deleteRac($index)">删除</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="clearfix mgb10">
+						<div class="col-md-offset-2 col-lg-1 col-md-1">
+							<a role="button" class="btn btn-normal function-btn" ng-click="testLinkServer();">测试服务</a>
+						</div>
+					</div>
+					<div class="clearfix mgb10">
+						<label class="col-md-2 search-label txt-right bold-font">
+							数据库登录账户：<span class="sign-must"></span>
+						</label>
+						<div class="col-md-5" style="line-height:30px;">（读取相关信息，使得审计内容更加完备）</div>
+					</div>
+					<div class="clearfix mgb10">
+						<label class="col-md-2 search-label txt-right">
+							数据库用户名：<span class="sign-must"></span>
+						</label>
+						<div class="formWidth_protectObj">
+							<input type="text" class="form-control" placeholder="请输入数据库用户名" ng-model="Obj.init.objInfo.sysname"> 
+						</div>
+						<div class="col-md-2 validate-container search-label">
+					     	<div ng-show="dbUser">请输入数据库用户名和密码！</div>
+					     	<div ng-show="dbUserErr">数据库用户名或密码错误！</div>
+					 	</div>
+					</div>
+					<div class="clearfix mgb10">
+						<label class="col-md-2 search-label txt-right" style="margin-bottom:0px;">
+							数据库密码：<span class="sign-must"></span>
+						</label>
+						<div class="formWidth_protectObj">
+							<input type="password" class="form-control" placeholder="请输入数据库账户密码" ng-model="Obj.init.objInfo.syspass"> 
+						</div>
+					</div>
+					<div class="clearfix mgb10">
+						<div class="col-md-offset-2 col-md-6">
+							<label class="radio-inline">
+								<input type="radio" name="accountAction" ng-model="Obj.init.objInfo.userDealWay" value="0">不保存该账户
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="accountAction" ng-model="Obj.init.objInfo.userDealWay" value="1">保存该账户
+							</label>
+							<label class="radio-inline"  ng-show="Obj.init.objInfo.dbtypeShow=='oracle' || Obj.init.objInfo.dbtypeShow=='sqlserver'">
+								<input type="radio" name="accountAction" ng-model="Obj.init.objInfo.userDealWay" value="2">通过该账户创建最小权限账户
+							</label>
+						</div>
+					</div>
+					<div class="clearfix mgb20">
+						<div class="col-md-offset-2 col-lg-1 col-md-1">
+							<a role="button" class="btn btn-normal function-btn" ng-click="testLinkjdbc();">测试数据库连接</a>
+						</div>
+					</div>
+					<div class="clearfix mgb20">
+						<div class="col-md-offset-2 col-lg-2 col-md-2">
+							<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="saveEditInfo();">保存</button>
+							<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="blockFlag = 0;init();">返回</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- 保护对象配置-->
+	<div class="block-container" ng-show="blockFlag == 2">
+		<div class="blue-border-panel" style="position:relative;">
+			<div class="">
+				<div class="colum-title">保护对象详情</div>
+			</div>
+			<div class="clearfix pdl20 mg10">
+				<div class="pull-left pdt5">
+					<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="editObj('edit',cache.Objdetail);">编辑</a>
+					<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="setStatus(1,cache.Objdetail.dbid,cache.Objdetail.status);">启用</a>
+					<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="setStatus(0,cache.Objdetail.dbid,cache.Objdetail.status);" >禁用</a>
+					<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="deletObj(cache.Objdetail.dbid);">删除</a>
+					<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="blockFlag = 0;init();">返回</a>
+				</div>
+			</div>
+			<div>
+				<HR class="hr-style"></HR>
+			</div>
+			<div class="row">
+				<form class="col-md-12 input-custom" style="margin-left:-4%;">
+					<div class="clearfix">
+						<span class="col-md-2 txt-right mgb10 bold-font">概览信息：</span>
+					</div>
+					<div class="clearfix mgb10">
+						<span class="col-md-2 txt-right">名称：</span>
+						<span>{{cache.Objdetail.name}}</span>
+					</div>
+					<div class="clearfix mgb10">
+						<span class="col-md-2 txt-right">业务状态：</span>
+						<span>{{cache.Objdetail.status == 1?'启用':'禁用'}}</span>
+					</div>
+					<!-- <div class="clearfix mgb10">
+						<span class="col-md-2 txt-right">数据源：</span>
+						<span>{{!cache.Objdetail.source ? '-' : cache.Objdetail.source == 0? '云镜像' : '网络镜像'}}</span>
+					</div> -->
+					<div class="clearfix mgb10">
+						<span class="col-md-2 txt-right">数据库类型：</span>
+						<span>{{cache.Objdetail.dbtypeView}}</span>
+					</div>
+					<div class="clearfix mgb10">
+						<span class="col-md-2 txt-right">数据库版本：</span>
+						<span>{{cache.Objdetail.version ? cache.Objdetail.version : '-'}}</span>
+					</div>
+					<div class="clearfix mgb10">
+						<span class="col-md-2 txt-right">服务器地址：</span>
+						<span>{{cache.Objdetail.hostname}}</span>
+					</div>
+					<div class="clearfix mgb10">
+						<span class="col-md-2 txt-right">端口：</span>
+						<span>{{cache.Objdetail.port}}</span>
+					</div>
+					<div class="clearfix mgb10">
+						<span class="col-md-2 txt-right">实例/服务名：</span>
+						<span>{{(!cache.Objdetail.service && !cache.Objdetail.serviceName) ? '-' : (cache.Objdetail.service + '/' + cache.Objdetail.serviceName)}}</span>
+					</div>
+					<div class="clearfix mgb10">
+						<span class="col-md-2 txt-right bold-font">数据库账户：</span>
+					</div>
+					<div class="clearfix mgb10">
+						<span class="col-md-2 txt-right">来源类型：</span>
+						<span>{{(!cache.Objdetail.userName || cache.Objdetail.dataForm == 0) ? '-' : cache.Objdetail.dataForm == 1 ? '用户自建' : '本系统生成'}}</span>
+					</div>
+					<div class="clearfix mgb10">
+						<span class="col-md-2 txt-right">数据库用户名：</span>
+						<span>{{cache.Objdetail.userName ? cache.Objdetail.userName : '-'}}</span>
+					</div>
+					<div class="col-md-offset-1 col-lg-10 col-md-10 mgt10" ng-hide="cache.Objdetail.raclist.length == 0">
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>节点名称</th>
+									<th>使用状态</th>
+									<th>IP地址</th>
+									<th>端口</th>
+									<th>SID</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-center listEmpty" ng-show="cache.racList.length==0">
+			                        <td colspan="6"><span class="listEmpty-img"></span>没有RAC信息</td>
+			                    </tr>
+								<tr ng-repeat="item in cache.racList">
+									<td>RAC节点{{$index+1}}</td>
+									<td>{{item.status == 0?'禁用中':'启用中'}}</td>
+									<td>{{item.racIp}}</td>
+									<td>{{item.racPort}}</td>
+									<td>{{item.racSid}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="J_addRAC" modal-directive>
+	<div ng-include="'views/businessSetting/addRAC.html'"></div>
+</div>
+<div id="J_editRAC" modal-directive>
+	<div ng-include="'views/businessSetting/editRAC.html'"></div>
+</div>
+
+<div id="J_testLink" modal-directive>
+	<div ng-include="'views/businessSetting/testLink.html'"></div>
+</div>
+<div id="J_testjdbc" modal-directive>
+	<div ng-include="'views/businessSetting/testjdbc.html'"></div>
+</div>
+
+<div id="J_Alert" alert-div></div>
+<div id="J_confirm" confirm-div></div>

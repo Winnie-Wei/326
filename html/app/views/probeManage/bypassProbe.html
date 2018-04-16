@@ -1,0 +1,182 @@
+<div class="box pd10" ng-init="init();" id="J_bypassProbe">
+	<!-- 面包屑 -->
+	<div>
+		<ol class="breadcrumb">
+			<li><i class="icon-breadcrumb"></i><a ui-sref="main.home">探针管理</a></li>
+			<li>/</li>
+			<li class="active"><a ui-sref="main.bypassProbe">云旁路探针</a></li>
+		</ol>
+	</div>
+	<!-- 云旁路探针列表-->
+	<div class="block-container ">
+		<div class="blue-border-panel clearfix" style="position:relative;">
+			<div class="">
+				<div class="colum-title">云旁路探针列表</div>
+			</div>
+			<div>
+				<div class="clearfix action-bar pdl20 pdr10">
+					<div class="pull-left mgr10 form-horizontal mgl20">
+						<label class="checkbox" for="J_checkAll">
+							<input type="checkbox" id="J_checkAll" ng-model="checkAll" ng-change="selectAll()" />
+						</label>
+					</div>
+					<div class="pull-left pdt5">
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="mirrorCert();">认证</a>
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="mirrorCerted();">取消认证</a>
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="mirrorCommand('start');">启动</a>
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="mirrorCommand('stop');">停止</a>
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="mirrorCommand('restart');">重启</a>
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="mirrorCommand('reload');">重载</a>
+					</div>
+					<div class="pull-right pdt5">
+						<a role="button" class="btn btn-normal btn-blue btn-xs pull-right" ng-click="getProbeList();">搜索</a>
+						<div class="pull-right mgr10">
+							<input type="text" class="form-control action-search-style" placeholder="请输入搜索内容" ng-model="initObj.srcInfo.srcText">
+						</div>
+						<div class="pull-right mgr10 action-select-div">
+							<select class="form-control action-select-style" ng-model="initObj.srcInfo.srcSelect">
+								<option value="all">全部</option>
+								<option value="mirror_name">探针名称</option>
+								<option value="cert_status">认证状态</option>
+								<option value="run_status">运行状态</option>
+								<option value="host">主机地址</option>
+								<option value="run_time">操作系统</option>
+								<option value="version">软件版本</option>
+								<option value="protect_object">保护对象</option>
+							</select>
+							<label class="select-btn"></label> 
+						</div>
+					</div>
+				</div>
+				<div>
+					<HR class="hr-style"></HR>
+				</div>
+				<table class="table table-bordered table-hover" style="width:98%;margin:auto;margin-bottom:20px;">
+					<thead>
+						<tr>
+							<th class="list-top-checkbox"></th>
+							<th><a class="order-th" ng-click="getProbeList('mirror_name');">探针名称<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('mirror_name');"></i></span></a></th>
+							<th><a class="order-th" ng-click="getProbeList('cert_status')">认证状态<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('cert_status');"></i></span></a></th>
+							<th><a class="order-th" ng-click="getProbeList('run_status')">运行状态<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('run_status');"></i></span></a></th>
+							<th><a class="order-th" ng-click="getProbeList('host')">主机地址<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('host');"></i></span></a></th>
+							<th><a class="order-th" ng-click="getProbeList('os_name')">操作系统<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('os_name');"></i></span></a></th>
+							<th>运行时长</th>
+							<th><a class="order-th" ng-click="getProbeList('version')">软件版本<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('version');"></i></span></a></th>
+							<th>业务数据</th>
+							<th><a class="order-th" ng-click="getProbeList('protect_object')">保护对象<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('protect_object');"></i></span></a></th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="listEmpty" ng-show="initObj.probeList.length==0">
+	                        <td colspan="11"><span class="listEmpty-img"></span>没有探针信息</td>
+	                    </tr>
+						<tr ng-repeat="item in initObj.probeList">
+							<td class="list-top-checkbox"><input type="checkbox" name="id" value="{{item.id}}" ng-change="selectOne()" ng-model="item.checked" /></td>
+							<td>{{item.mirror_name}}</td>
+							<td><img src="/capaa/html/app/src/images/icons/authentication{{item.cert_status}}.png" class="icon" style="margin-top:-2px;"/>{{item.cert_status == '0' ? '未认证' : '已认证'}}</td>
+							<td>{{item.run_status == 'alive' ? '正常' : '停止'}}</td>
+							<td>{{item.host}}</td>
+							<td>{{item.os_name}}</td>
+							<td>{{item.run_time}}</td>
+							<td>{{item.version}}</td>
+							<td>{{item.agent_data}}</td>
+							<td>{{item.protect_object}}</td>
+							<td class="col-operate">
+								<a class="table-btn" role="button" ng-click="mirrorCert(item);" ng-show="item.cert_status == '0'">认证</a>
+								<a class="table-btn" role="button" ng-click="mirrorCerted(item);" ng-hide="item.cert_status == '0'">取消认证</a>
+								<a class="table-btn" role="button" ng-click="mirrorCommand('start',item);">启动</a>
+								<a class="table-btn" role="button" ng-click="mirrorCommand('stop',item);">停止</a>
+								<a class="table-btn" role="button" ng-click="mirrorCommand('restart',item);">重启</a>
+								<a class="table-btn" role="button" ng-click="mirrorCommand('reload',item);">重载</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<pager-directive pager="pager" func="'getProbeList'" format-state="''" pslgst="pslgst"></pager-directive>
+			</div>
+		</div>
+	</div>
+	<!-- 云旁路探针配置-->
+	<div class="block-container ">
+		<div class="blue-border-panel clearfix" style="position:relative;">
+			<div>
+				<div class="colum-title">云旁路探针配置</div>
+			</div>
+			<div class="clearfix pdl20 mg10">
+				<div class="pull-left pdt5">
+					<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="editServerInfo(initObj.serverInfo);" ng-show="initObj.editMod">编辑</a>
+					<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="saveServerInfo();" ng-hide="initObj.editMod">保存</a>
+					<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="cancelEdit();" ng-hide="initObj.editMod">取消</a>
+					<span ng-show="manage_blank" class="validate-container">服务器配置信息不能为空！</span>
+				</div>
+			</div>
+			<div>
+				<HR class="hr-style"></HR>
+			</div>
+			<div class="mgb10">
+				<div class="heading-name">管理服务器：<span style="color:#999;">（用于探针的管理、升级、启停等操作）</span></div>
+				<div class="userlistContent">
+					<span>地址：</span>
+					<span ng-show="initObj.editMod">{{initObj.serverInfo.Manage_Service_Host}}</span>
+					<span ng-hide="initObj.editMod"><input type="text" ng-model="cache.serverObj.Manage_Service_Host"/></span>
+					<span ng-show="manage_ip" class="validate-container">管理服务器地址格式不正确！</span>
+				</div>
+				<div class="userlistContent">
+					<span>端口：</span>
+					<span ng-show="initObj.editMod">{{initObj.serverInfo.Manage_Service_Port}}<span style="color:#999;">（不建议修改）</span></span>
+					<span ng-hide="initObj.editMod"><input type="text" ng-model="cache.serverObj.Manage_Service_Port" /></span>
+					<span ng-show="manage_port" class="validate-container">管理服务器端口格式不正确！</span>
+				</div>
+			</div>
+			<div class="mgb20">
+				<div class="heading-name">业务服务器：<span style="color:#999;">（用于接收探针发送的业务数据并处理）</span></div>
+				<div class="userlistContent">
+					<span>地址：</span>
+					<span ng-show="initObj.editMod">{{initObj.serverInfo.Mirror_Service_Host}}</span>
+					<span ng-hide="initObj.editMod"><input type="text" ng-model="cache.serverObj.Mirror_Service_Host" /></span>
+					<span ng-show="mirror_ip" class="validate-container">业务服务器地址格式不正确！</span>
+				</div>
+				<div class="userlistContent">
+					<span>端口：</span>
+					<span ng-show="initObj.editMod">{{initObj.serverInfo.Mirror_Service_Port}}<span style="color:#999;">（不建议修改）</span></span>
+					<span ng-hide="initObj.editMod"><input type="text" ng-model="cache.serverObj.Mirror_Service_Port" /></span>
+					<span ng-show="mirror_port" class="validate-container">业务服务器端口格式不正确！</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 云旁路探针下载-->
+	<div class="block-container ">
+		<div class="blue-border-panel clearfix" style="position:relative;">
+			<div>
+				<div class="colum-title">云旁路探针下载</div>
+			</div>
+			<table class="table table-bordered table-hover mgt10" style="width:98%;margin:20px auto;">
+				<thead>
+					<tr>
+						<th>操作系统</th>
+						<th>字长</th>
+						<th>大小</th>
+						<th>软件版本</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>CentOS/Redhat Enterprise Linux 5及以上</td>
+						<td>64位</td>
+						<td>11.3MB</td>
+						<td>1.0</td>
+						<td class="col-operate">
+							<a class="table-btn" role="button" ng-click="loadProbe();">下载</a>
+							<a class="table-btn copyWinUrl" role="button" id="J_copyWin">复制下载地址</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div id="J_Alert" alert-div></div>
+<div id="J_confirm" confirm-div></div>

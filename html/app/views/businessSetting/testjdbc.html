@@ -1,0 +1,16 @@
+<div class="box modal-testLink">
+	<div class="testLink-left" style="bottom:50px;">
+		<div><img src="/capaa/html/app/src/images/icons/test-icon1.png" style="width:50px;"></div>
+		<div>本机</div>
+	</div>
+	<div id="" class="testLink-line" ng-show="testflag" style="left:96px;bottom:95px;">
+		<div id="J_testLoading" class="testLink-line-block"></div>
+	</div>
+	<div class="testLink-line-end" ng-show="!testflag" style="left:96px;bottom:95px;"></div>
+	<div class="testLink-right" style="bottom:50px;right:55px;">
+		<div><img src="/capaa/html/app/src/images/icons/test-icon2.png" style="width:50px;"></div>
+		<div>数据库</div>
+	</div>
+	<div class="testLink-result" ng-show="testResult == 1"><img src="/capaa/html/app/src/images/icons/success.png" class="icon">{{testjdbcInfo}}</div>
+	<div class="testLink-result" ng-show="testResult == 2"><img src="/capaa/html/app/src/images/icons/error.png" class="icon">{{testjdbcInfo}}</div>
+</div>

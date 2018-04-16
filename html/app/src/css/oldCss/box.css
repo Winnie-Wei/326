@@ -1,0 +1,112 @@
+body{
+	color:#333;
+} 
+.clear{
+	clear:both;
+}
+h2{
+	margin:0;padding:0;
+}
+img{
+	border:none;
+	vertical-align:middle;
+}
+.wrap{
+	position: fixed;
+    top: 17%;
+    left: 40%;
+    
+	display:none;
+	margin:100px auto;
+	width:220px;
+}
+.wrap_2{
+	position: fixed;
+    top: 17%;
+    left: 45%;
+    
+	display:none;
+	margin:100px auto;
+	width:220px;
+}
+
+* html .wrap,.wrap_2{
+     position: absolute;
+     top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+
+.jqmOverlay { background-color: #000; }
+
+.wrap,.wrap_2 .div_top{
+	background:url(../../images/box/bg_cen.gif) left top repeat-x;
+	height:30px;
+}
+.div_top  h2{
+	float:left;
+	background:url(../../images/box/bg_le.gif) left top no-repeat;
+	font:bold 12px/30px "宋体";
+	color:#fff;
+	text-indent:27px;
+}
+.div_top  .resetAll{
+	float:right;
+	font:bold 12px/30px "宋体";
+	color:#fff;
+	text-align:left;
+	text-indent:27px;
+	margin-right:10px;
+}
+div.move {cursor: move;}
+
+.div_top .div_rit{
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: bold;
+	float:right;
+	background:url(../../images/box/bg_rit.gif) left top no-repeat;
+	height:30px;
+	line-height:30px;
+	width:19px;
+	text-align:left;
+}
+.div_top .div_rit img{
+	padding:10px 0 0 0;
+}
+.div_cen{
+	background-color:#fff;
+	clear:both;
+	padding:30px;
+	font:14px/22px "宋体";
+	border:#6da0be 1px solid;
+	border-width:0 1px;
+	text-align:left;
+}
+.div_bottom{
+	clear:both;
+	border-top:#dadfe3 1px solid;
+	border-left:#6da0be 1px solid;
+	border-right:#6da0be 1px solid;
+	border-bottom:#6da0be 1px solid;
+	background:#eff6ff;
+	padding:10px 0;
+}
+.div_bottom input{
+	float:right;
+	margin-right:10px;
+	border:none;
+	color:#666;
+	width:58px;
+	height:25px;
+}
+.button_1{
+	background:url(../../images/box/button_1.gif) left top no-repeat;
+	font:12px/25px "宋体";
+	cursor:pointer;
+}
+.button_2{
+	background:url(../../images/box/button_2.gif) left top no-repeat;
+	font:bold 12px/25px "宋体";
+}
+.new-list-table a{
+	color:#06c;
+}

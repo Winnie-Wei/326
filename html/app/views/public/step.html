@@ -1,0 +1,7 @@
+<div style="margin:0 auto;margin-bottom:60px;width:90%;">
+	<ul class="nav nav-pills nav-justified step step-round" data-step="{{defaultstep}}">
+		<li ng-repeat="item in steplists" ng-class="stepStyle( $index, this );">
+			<a>{{item.name}}</a>
+		</li>
+	</ul>
+</div>

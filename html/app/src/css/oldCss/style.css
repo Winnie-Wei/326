@@ -1,0 +1,163 @@
+/* 样式定义 ------------------2014-10-27---------------------------------------------------------------------- */
+body {
+	min-width: 1300px;	
+}
+
+
+/* 整体布局 */
+.top{min-width: 1300px; position:absolute; top:0px; height:80px; right:0px; left:0px;}
+.top_bj{min-width: 1300px; position:absolute; top:0px; height:80px; right:0px; left:0px; background:#36b0eb url(../images/top_bj.png) repeat-x;}
+.top_bj_l{min-width: 1300px; position:absolute; top:0px; height:80px; right:0px; left:0px; background:url(../images/top_bj_l.png) left top no-repeat;}
+.top_bj_r{min-width: 1300px; position:absolute; top:0px; height:80px; right:0px; left:0px; background:url(../images/top_bj_r.png) right bottom no-repeat; }
+.div-body{min-width:1300px; position:absolute; top:80px; bottom:0px; left:0px; right:0px; min-height:525px;}
+/* 整体布局 end */
+
+
+/* top */
+/*菜单 */
+.menu li{width:68px;}
+.menu a,.menu a:link{height:80px;line-height:138px; }
+.menu li.selected a{ background:url(../images/menu_hover.png);background-size: cover;}
+.menu a:hover{ background:url(../images/menu_hover.png);background-size: cover;}
+/*菜单图标样式 1366 */
+
+.home-img{ background:url(../images/home.png);}
+.search-img{ background:url(../images/search.png)}
+.report-img{ background:url(../images/report.png)}
+.identify-img{ background:url(../images/identify.png)}
+.database-img{ background:url(../images/database.png)}
+.recover-img{ background:url(../images/recover.png)}
+.table-img{ background:url(../images/table.png)}
+.warnSub-img{ background:url(../images/warnSub.png)}
+.rule-img{ background:url(../images/rule.png)}
+.ruleManage-img{ background:url(../images/ruleManage.png)}
+.system-img{ background:url(../images/system.png)}
+
+
+.home-img{ background:url(../fireImg/home.png) no-repeat center 10px; background-size: 72%;}
+.book-img{ background:url(../fireImg/book.png) no-repeat center 10px; background-size: 72%;}
+.report-img{ background:url(../fireImg/report.png) no-repeat center 10px; background-size: 72%;}
+.db-img{ background:url(../fireImg/db.png) no-repeat center 10px; background-size: 64%;}
+.policy-img{ background:url(../fireImg/policy.png) no-repeat center 10px; background-size: 72%;}
+.property-img{ background:url(../fireImg/property.png) no-repeat center 10px; background-size: 72%;}
+.safe-img{ background:url(../fireImg/safe.png) no-repeat center 10px; background-size: 72%;}
+.white-img{ background:url(../fireImg/white.png) no-repeat center 10px; background-size: 72%;}
+.set-img{ background:url(../fireImg/set.png) no-repeat center 10px; background-size: 72%;}
+.watch-img{ background:url(../fireImg/watch.png) no-repeat center 15px; background-size: 62%;}
+
+/*右边标题等*/
+.top_r{ width:440px;}
+.logo{ font-size:24px; position:relative; top:10px;}
+.dateTime .guanyu{float:left;margin-right:10px;margin-top:10px;list-style:none;}
+/* top end */
+
+/* 首页的body部分 */
+.mainL_index{ position:absolute; left:10px; right:420px; top:10px; bottom:40px;}
+.mainR_index{ position:absolute; right:10px; width:400px; top:10px; bottom:40px;}
+.newTable{ position:absolute; bottom:0px; top:30px;overflow-Y:auto;overflow-X:hidden;}
+.newTable-table{text-align:left;overflow-y:auto; height:95%;}
+.m_md_t{ position:absolute; height:180px; top:0px;}
+.m_md_b{position:absolute; top:180px; bottom:0px;}
+.m_md_b fieldset{ height:101.5%;}
+/* 首页的body部分 end */
+
+/* 左右结构的 */
+.mainL{ position:absolute; left:10px; width:320px; top:10px; bottom:40px;}
+.mainR{ position:absolute; right:10px; left:340px; top:10px; bottom:40px;}
+.mtab{width:106px;}
+.mtabon{width:106px;}
+/* 左右结构的 end */
+
+/* 不分左右结构的 */
+.main{ position:absolute; left:10px; right:10px; top:10px; bottom:40px;}
+/* 不分左右结构的 end */
+
+/* 列表 */
+.list-div{border:0px; height:86%;}
+.list-grid{max-height:76%;overflow-Y:auto;overflow-X:hidden;}
+.list-div-solr{border:0px; height:91%;}
+.list-grid-solr{max-height:77%;overflow-Y:auto;overflow-X:hidden;}
+.list-grid-warn{height:72%;overflow-Y:auto;overflow-X:hidden;}
+.warn-top{width:98%; margin-left:auto; margin-right:auto; height:150px;}
+.warn-bottom{position:absolute; left:0px; right:0px; top:190px; bottom:10px;}
+/* 列表 end */
+
+
+/* 修改（2014-11-17）  ---------------------------------------------------------------------------------------------------------- */
+/* 左右两栏 */
+#main{min-width:1300px; position:absolute; top:90px; bottom:0px; left:0px; right:0px; min-height:525px;}
+#mtree{position:absolute; left:10px; width:320px; top:10px; bottom:40px;}
+#main1{position:absolute; right:10px; left:340px; top:10px; bottom:40px;}
+#dtree {
+	float:left;
+	width:318px;
+	margin-top:0px;
+	margin-left:2px;
+	margin-bottom:10px;
+	overflow-y:auto;
+	overflow-x:auto;
+	height:94%;min-height:450px;
+}
+
+#list-info{
+	height:67%;min-height:320px;	
+}
+
+/**登录页面*/
+#login-box{margin-top:-36px;}
+
+/**首页订阅规则列表*/
+#sysCountInfo{min-height: 140px;}
+#sysCountInfoList{height:30%;min-height:110px;}
+
+/* 数据库状态栏样式 */
+li.status-normal{background:url(../images/sy_4.gif) no-repeat center top;}
+li.status-normal_on{background:url(../images/sy_4_on.gif) no-repeat center top;width:80px;height:75px;}
+li.status-disable{background:url(../images/disable.png) no-repeat center top;width:80px;height:75px;}
+li.status-disable_on{background:url(../images/disable_on.png) no-repeat center top;width:80px;height:75px;}
+li.status-license{background:url(../images/license.png) no-repeat center top;width:80px;height:75px;}
+li.status-license_on{background:url(../images/license_on.png) no-repeat center top;width:80px;height:75px;}
+li.status-monitor{background:url(../images/monitor.gif) no-repeat center top;width:80px;height:75px;}
+li.status-monitor_on{background:url(../images/monitor_on.gif) no-repeat center top;width:80px;height:75px;}
+li.status-add{background:url(../images/adddb.png) no-repeat center top;}
+li.status-study{background:url(../images/study.gif) no-repeat center top;}
+li.status-study_on{background:url(../images/study_on.gif) no-repeat center top;width:80px;height:75px;}
+/* 数据库状态栏样式 end*/
+
+/*系统首页最新审计信息*/
+#slidesTop .slide ul{list-style:none;}
+#slidesTop .slide li{
+	float:left;
+	width:125px;
+	height:120px;
+	line-height:40px;
+	text-align:center;
+	padding-top:50px;
+	padding-bottom:5px;
+	margin:-4px 5px 2px 0px;
+	cursor:pointer;
+	list-style:none;
+}
+#slidesTop {
+	position:absolute;
+    width:100%;
+    height:150px;
+	z-index:100;
+}
+#slidesTop .slide {
+	width:100%;
+	height:100%;
+	padding:35px 4px;	
+}
+/*系统首页最新审计信息 end*/
+
+/* tab分栏样式 */
+.tab-div{height:90%;}
+
+/* 规则映射-查询结果的div高度 */
+#gzys_result_div{height:45%;min-height:120px;}
+
+/* 订阅和告警 */
+#warnsubs-home-view{height: 79%;}
+.warnsubs-email-view{height: 85.5%;}
+.subs-info-home-view{height: 250px;}

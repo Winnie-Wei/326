@@ -1,0 +1,88 @@
+<div class="box pd10" ng-init="init();" id="J_protectObj">
+	<!-- 面包屑 -->
+	<div >
+		<ol class="breadcrumb">
+			<li><i class="icon-breadcrumb"></i><a>业务设置</a></li>
+			<li>/</li>
+			<li class="active"><a>保护对象</a></li>
+		</ol>
+	</div>
+	<!-- 保护对象列表-->
+	<div class="block-container">
+		<div class="blue-border-panel clearfix">
+			<div>
+				<div class="colum-title">保护对象列表</div>
+			</div>
+			<div>
+				<div class="clearfix action-bar pdl20 pdr10">
+					<div class="pull-left mgr10 form-horizontal mgl20">
+						<label class="checkbox" for="J_checkAll">
+							<input type="checkbox" id="J_checkAll" ng-model="initData.protectList.checkAll" ng-change="protectList_selectAll(initData.protectList.checkAll,objList)" />
+						</label>
+					</div>
+					<div class="pull-left pdt5">
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="addProtectObj();">添加</a>
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="autoAddObj();">智能添加</a>
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="setStatusAction('1');">启用</a>
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="setStatusAction('0');">禁用</a>
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="deletObj();">删除</a>
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="">批量导入</a>
+						<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="">模板下载</a>
+					</div>
+					<div class="pull-right pdt5">
+						<a role="button" class="btn btn-normal btn-blue btn-xs pull-right" ng-click="getProbeList();">搜索</a>
+						<div class="pull-right mgr10">
+							<input type="text" class="form-control action-search-style" placeholder="请输入搜索内容" ng-model="initObj.srcInfo.srcText">
+						</div>
+						<div class="pull-right mgr10 action-select-div">
+							<select class="form-control action-select-style" ng-model="initData.srcInfo.srcSelect">
+								<option value="all">全部</option>
+								<option value="mirror_name">名称/分组名称</option>
+								<option value="run_status">运行状态</option>
+								<option value="objType">保护对象类型</option>
+								<option value="host">数据库类型</option>
+								<option value="run_time">数据库版本号</option>
+								<option value="version">IP地址</option>
+								<option value="protect_object">端口号</option>
+							</select>
+							<label class="select-btn"></label> 
+						</div>
+					</div>
+				</div>
+				<div>
+					<HR class="hr-style"></HR>
+				</div>
+				<table class="table table-bordered table-hover table-layout">
+					<thead>
+						<tr>
+							<th class="list-top-checkbox"></th>
+							<th><a class="order-th" ng-click="getProtectList('mirror_name');">名称/分组名称<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('mirror_name',initData.tableOrder );"></i></span></a></th>
+							<th><a class="order-th" ng-click="getProtectList('mirror_name1');">运行状态<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('mirror_name1',initData.tableOrder );"></i></span></a></th>
+							<th><a class="order-th" ng-click="getProtectList('mirror_name11');">保护对象类型<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('mirror_name11',initData.tableOrder );"></i></span></a></th>
+							<th><a class="order-th" ng-click="getProtectList('mirror_name2');">数据库类型<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('mirror_name2',initData.tableOrder );"></i></span></a></th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in objList">
+							<td class="list-top-checkbox"><input type="checkbox" name="protectListId" value="{{item.id}}" ng-change="protectList_selectOne(initData.protectList,objList)" ng-model="item.checked"/></td>
+							<td><a class="table-bordered-td-a" ng-bind="item.name" ng-click="manageObj(item);"></a></td>
+							<td><img src="/capaa/html/app/src/images/icons/actStatus{{item.use_flag}}.png" class="mgr10" style="margin-top:-2px;" />{{item.use_flag == 0 ? '禁用' : '启用'}}</td>
+							<td ng-bind="item.object_type == 1 ? '集群' : '分组' "></td>
+							<td ng-bind="item.db_type"></td>
+							<td class="col-operate">
+								<a class="table-btn" role="button" ng-click="manageObj(item);">管理</a>
+								<a class="table-btn" role="button" ng-click="editObj('edit',item)">编辑</a>
+								<a class="table-btn" role="button" ng-click="setStatusAction('1',item);" ng-show="item.use_flag == '0'">启用</a>
+								<a class="table-btn" role="button" ng-click="setStatusAction('0',item);" ng-hide="item.use_flag == '0'">禁用</a>
+								<a class="table-btn" role="button" ng-click="deletObj(item);">删除</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<pager-directive pager="initData.pager"></pager-directive>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="J_confirm" confirm-div></div>

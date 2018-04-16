@@ -1,0 +1,111 @@
+<div class="block-container" ng-init="auditInit();" style="position:relative;width:100%;height:100%;">
+	<!-- 左侧菜单 -->
+	<div class="sub-sidebar">
+		<ul class="pd0">
+	        <li class="sub-sidebar-back" ng-click="backToList();"><a class="sub-sidebar-back-icon"></a></li>
+	        <li class="sidebar-item" ui-sref="main.protectObjInfo({POid:{{initData.POid}}})">
+	            <a class="sub-sidebar-link">
+	                <span class="sub-sidebar-name">保护对象信息</span>
+	            </a>
+	        </li>
+	        <li class="sidebar-item" ui-sref="main.assetTab({POid:{{initData.POid}}})"> 
+	            <a class="sub-sidebar-link">
+	                <span class="sub-sidebar-name">资产管理</span>
+	            </a>
+	        </li>
+	        <li class="sidebar-item" ui-sref="main.selectAudit({POid:{{initData.POid}}})">
+	            <a class="sub-sidebar-link sub-active">
+	                <span class="sub-sidebar-name">选择性审计</span>
+	            </a>
+	        </li>
+	    </ul>
+	    		
+		<div class="sub-close-box sub-close-show" id="J_btnOfsubPanel" ng-click="closeSubPanel(this);">
+			<div class="sub-close-up"></div>
+		</div>
+	</div>
+	
+	<div class="sub-panel-content">
+	
+		<div class="db-simple-detail">
+			<span class="dbtype-icon-oracle"></span>
+			<span class="db-detail-info">
+				<span>名称：{{initData.headerInfo.name}} | </span>
+				<span>运行状态：{{initData.headerInfo.use_flag == '1' ? '启用' : '禁用'}} | </span>
+				<span>类型：{{initData.headerInfo.db_type}}</span>
+			</span>
+			<div class="db-detail-action" ng-show="initData.currentTab == 'info'">
+				<a role="button" class="btn btn-normal btn-blue btn-xs mgr10">配置</a>
+				<a role="button" class="btn btn-normal btn-blue btn-xs mgr10">刷新</a>
+			</div>
+		</div>
+		
+		<div class="blue-border-panel sub-container clearfix">
+			<div>
+				<div class="colum-title">选择性审计</div>
+			</div>
+			<div class="clearfix pdl20 mg10 action-bar">
+				<div class="pull-left pdt5">
+					<div class="pull-left mgr10 form-horizontal mgl20">
+						<label class="checkbox"> 
+							<input type="checkbox" ng-model="initData.auditList.checkAll" ng-change="auditList_selectAll( initData.auditList.checkAll, cache.senseAssetList )" />
+						</label>
+					</div>
+					<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="addSelectAudit();">添加</button>
+					<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="deleteComfirm();">删除</button>
+				</div>
+				<div class="pull-right pdt5">
+					<a role="button" class="btn btn-normal btn-blue btn-xs pull-right" ng-click="">搜索</a>
+					<div class="pull-right mgr10">
+						<input type="text" class="form-control action-search-style" placeholder="请输入搜索内容" ng-model="initObj.srcInfo.srcText">
+					</div>
+					<div class="pull-right mgr10 action-select-div">
+						<select class="form-control action-select-style" ng-model="initObj.srcInfo.srcSelect">
+							<option value="all" ng-selected="true">全部</option>
+							<option value="mirror_name">名称/分组名称</option>
+							<option value="run_status">运行状态</option>
+							<option value="host">数据库类型</option>
+							<option value="run_time">数据库版本号</option>
+							<option value="version">IP地址</option>
+							<option value="protect_object">端口号</option>
+						</select>
+						<label class="select-btn"></label> 
+					</div>
+				</div>
+			</div>
+			<div>
+				<HR class="hr-style"></HR>
+			</div>
+			<div>
+				<table class="table table-bordered table-hover table-layout">
+					<thead>
+						<tr>
+							<th></th>
+							<th><a class="order-th" ng-click="getSensAssetList('name');">名称<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('name',initData.tableOrder);"></i></span></a></th>
+							<th><a class="order-th" ng-click="getSensAssetList('type');">过滤类型<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('type',initData.tableOrder);"></i></span></a></th>
+							<th><a class="order-th" ng-click="getSensAssetList('conditions ');">过滤条件<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('conditions ',initData.tableOrder);"></i></span></a></th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in cache.senseAssetList">
+							<td class="list-top-checkbox"><input type="checkbox" value="{{item.id}}" ng-change="auditList_selectOne( cache.senseAssetList )" ng-model="item.checked"></td>
+							<td ng-bind="item.conn_name"></td>
+							<td ng-bind="item.filter_type"></td>
+							<td ng-bind="item.filter_condition"></td>
+							<td class="col-operate">
+								<a class="table-btn" role="button">详情</a> 
+								<a class="table-btn" role="button" ng-click="deleteComfirm(item);">删除</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<pager-directive pager="pagers" func="''" format-state="''" pslgst="pslgst"></pager-directive> 
+		   </div>
+		</div>
+		<div id="J_confirm" confirm-div></div> 
+		<div id="J_addSelectAudit" modal-directive >
+			<div ng-include="'views/businessSetting/protectObj/modal_addSelectAudit.html'"></div>
+		</div>
+	</div>
+</div>

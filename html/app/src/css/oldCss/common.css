@@ -1,0 +1,676 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background:#F5F7F8;
+	text-align:center;
+}
+
+
+/* 整体布局 */
+.top{overflow:hidden;}
+.div-body{background:#FAFAFA;margin: 0px auto;}
+.div-footer{ height:30px; line-height:30px; position:absolute; bottom:0px; left:0px; right:0px;background:#0B65A5;text-align:center;color:white;}
+/* 整体布局 end */
+
+
+/* top */
+/*菜单 */
+.menu{ display:inline; float:left;}
+.menu li{ float:left;text-align:center; color:white; margin:0 2px; }
+.menu a,.menu a:link{ display:block; color:white;}
+.menu a:hover{ color:white;text-decoration:none;}
+.menu li.selected a{ font-weight:bold;color:white;text-decoration:none;}
+.menu a:visited{ color:white;}
+.menu a div{width:100%; height:100%;}
+/*菜单图标样式 1440 */
+.home-img{margin-left:auto;margin-right:auto;}
+.search-img{margin-left:auto;margin-right:auto;}
+.report-img{margin-left:auto;margin-right:auto;}
+.identify-img{margin-left:auto;margin-right:auto;}
+.database-img{margin-left:auto;margin-right:auto;}
+.recover-img{margin-left:auto;margin-right:auto;}
+.table-img{margin-left:auto;margin-right:auto;}
+.warnSub-img{margin-left:auto;margin-right:auto;}
+.rule-img{margin-left:auto;margin-right:auto;}
+.ruleManage-img{margin-left:auto;margin-right:auto;}
+.system-img{margin-left:auto;margin-right:auto;}
+/*右边标题等*/
+.top_r{ margin:0px;float:right;}
+.dateTime{color:#21BEC2;height:18px;line-height:18px;float:right;}
+.dateTime span{color:#FEC121;}
+.dateTime a{color:#97E2F2;}
+.reset-server{display:inline-block;background:url("images/u85.png") no-repeat;background-size:18px 18px;padding-left:20px;}
+.logo{ color:white; font-family: "微软雅黑"; font-weight:bold; letter-spacing:0.2em;}
+/* top end */
+
+
+/* 首页的body部分 */
+.newbox{ width:100%;  margin-left:auto; margin-right:auto; overflow:hidden; border:1px solid #f5ca70; background:#fff8e3; height:30px; line-height:30px;}
+.newbox-title{with:132px;float:left;background: url(images/homeNew.png) no-repeat left; margin-left:5px; padding-left:18px;}
+.newbox-text{ text-align:left;margin: 0 10px 0 132px;}
+.newTable{ width:100%; margin-left:auto; margin-right:auto;margin-top:10px;}
+.m_md_t{ width:100%; margin-left:auto; margin-right:auto;}
+.m_md_b{ width:100%; margin-left:auto; margin-right:auto;margin-top:5px;}
+/* 系统首页自动刷新和更多样式 */
+.option{position:absolute;bottom:0px;width:98%; height:26px; line-height:26px; padding:0px 10px;text-align:left;}
+.option .checkbox{ vertical-align:middle; margin-right:10px;}
+.refresh{ background:url(images/refresh.gif) no-repeat; padding-left:20px; padding-bottom:1px;}
+.more{ float:right; margin-top:5px;}
+.sj_txt{ padding:10px; line-height:15px;}
+/* 首页的body部分 end */
+
+
+/* 树形菜单 */
+.mnav ul{height:30px;margin:0px 0px 0px 2px;}
+.mnav li {cursor:pointer;}
+.mnav li a{color:#0055bb;text-decoration:none;}
+.mtab{height:30px;float:left;text-align:center;list-style:none;line-height:30px;border:#b0cbec 1px solid;border-top-width:0px;border-bottom-color:#c7daf1;margin:0px -1px -1px 0px;background: url(images/mtab_bj.png) repeat-x;}
+.mtabon{height:29px;float:left;text-align:center;list-style:none;line-height:24px;border:#A1B6C7 1px solid; border-bottom-width:0px;border-top:2px solid #0B7EB0;margin:0px -1px -1px 0px;background:url(images/mtab_bj_on.png) repeat-x;}
+/* 列表页面 */
+.list-div{ width:98%;margin-left:auto; margin-right:auto; margin-top:15px;}
+.list-div-solr{ width:98%;margin-left:auto; margin-right:auto; margin-top:15px;}
+.list-grid{ width:98%; text-align:right;margin-left:auto;margin-right:auto; margin-bottom:5px; margin-top:5px;}
+.list-grid-solr{ width:98%; text-align:right;margin-left:auto;margin-right:auto; margin-bottom:5px; margin-top:5px;}
+.list-grid-warn{ width:98%; text-align:right;margin-left:auto;margin-right:auto; margin-bottom:5px; margin-top:5px;}
+.list-remark-div{width:98%; height:20px; line-height:20px; margin-left:auto; margin-right:auto; text-align:left; color:#13508F;}
+/* 属性页面 */
+.attribute_div{width:98%; height:auto; margin-left:auto; margin-right:auto; margin-top:10px;}
+.access-title{height: 25px;line-height: 25px;text-indent: 2px;padding-left:20px;text-align:left; color:#13508F; background:#E6ECFA url(images/attribute-bj.png) repeat-x;cursor:pointer;}
+.div_title_gr{height: 20px;line-height: 20px;text-indent: 2px;padding-left:5px;text-align:left; color:#13508F; background:#E6ECFA url(images/attribute-bj.png) repeat-x;cursor:pointer;border-bottom:1px dashed #DEE2E6;border-top:1px dashed #DEE2E6;}
+.attribute-open{ position:absolute; left:12px; height:25px; width:25px; background:url(images/attribute-open.png) 4px 5px no-repeat;}
+.attribute-close{ position:absolute; left:12px; height:25px; width:25px; background:url(images/attribute-close.png) 4px 5px no-repeat;}
+.table-div{ width:98%; margin-left:auto; margin-right:auto;padding-left:5px;padding-top:6px;}
+
+/* 系统中的button定义 */
+.czButton-div{width:98%; text-align:right;margin-left:auto;margin-right:auto;margin-top:10px; margin-bottom:10px;height:20px; }
+.czButton-div ul{ float:right;}
+.czButton-div li{ float:left; padding-bottom:10px;}
+.czButton-div input[type="button"]{ margin-left:5px;}
+.czButton-add,.button-add{ background:url(images/cz-add.png) no-repeat 5px 2px; height:23px; line-height:18px; width:auto; margin:0px; padding:0px;padding-left:25px; padding-right:5px; color:#13508F;border:1px solid #C5D3EB;}
+.czButton-delete,.button-delete{ background:url(images/cz-delete.png) no-repeat 5px 2px; height:23px; line-height:18px; width:auto; margin:0px; padding:0px;padding-left:25px; padding-right:5px; color:#13508F;border:1px solid #C5D3EB;}
+.czButton-allcheck{ background:url(images/cz-allcheck.png) no-repeat 5px 2px; height:23px; line-height:18px; width:auto; margin:0px; padding:0px;padding-left:25px; padding-right:5px; color:#13508F;border:1px solid #C5D3EB;}
+.czButton-back{ background:url(images/cz-back.png) no-repeat 5px 2px; height:23px; line-height:18px; width:auto; margin:0px; padding:0px;padding-left:27px; padding-right:5px; color:#13508F;border:1px solid #C5D3EB;}
+.czButton-checked{ background:url(images/cz-checked.png) #FFFFFF no-repeat 5px 2px; height:23px; line-height:18px; width:auto; margin:0px; padding:0px;padding-left:25px; padding-right:5px; color:#13508F;border:1px solid #C5D3EB;}
+.czButton-select{ background:url(images/cz-select.png) no-repeat 4px 2px; height:23px; line-height:18px; width:auto; margin:0px; padding:0px;padding-left:25px; padding-right:5px; color:#13508F;border:1px solid #C5D3EB;}
+.czButton-edits{ background: url(images/cz-list-edits.png) no-repeat 5px 2px; height:23px; line-height:18px; width:auto; margin:0px; padding:0px;padding-left:25px; padding-right:5px; color:#13508F;border:1px solid #C5D3EB;}
+.czButton-refresh{ background: url(images/cz-refresh.png) no-repeat 5px 2px; height:23px; line-height:18px; width:auto; margin:0px; padding:0px;padding-left:25px; padding-right:5px; color:#13508F;border:1px solid #C5D3EB;}
+.czButton-huifu{ background: url(images/cz-huifu.png) no-repeat 5px 2px; height:23px; line-height:18px; width:auto; margin:0px; padding:0px;padding-left:25px; padding-right:5px; color:#13508F;border:1px solid #C5D3EB;}
+.czButton{background:#FFFFFF; height:23px; line-height:18px; width:auto; margin:0px; text-align:center; color:#13508F;border:1px solid #C5D3EB;}
+
+/* 属性页面中关于button的定义 */
+
+.form-button{ background:url(../../images/box/searchButtonBj.png) repeat-x; height:25px; line-height:20px; width:70px; margin:0px; padding:0px; color:#FFFFFF; border:1px solid #D2DDEF;cursor:pointer;}
+.form-operation{width:98%; text-align:right;margin-left:auto;margin-right:auto;margin-top:12px;text-align: center;}
+.form-operation input[type="button"]{ margin-left:5px;}
+/*
+.button-add{ background:url(images/add.gif) no-repeat 6px 2px; height:23px; line-height:18px; width:70px; margin:0px; padding:0px;padding-left:15px; color:#13508F;border:1px solid #C5D3EB;}
+.button-update{ background:url(images/update.gif) no-repeat 6px 2px; height:23px; line-height:18px; width:70px; margin:0px; padding:0px;padding-left:15px; color:#13508F;border:1px solid #C5D3EB;}
+.button-delete{ background:url(images/delete.gif) no-repeat 6px 2px; height:23px; line-height:18px; width:70px; margin:0px; padding:0px;padding-left:15px; color:#13508F;border:1px solid #C5D3EB;}
+.button-selectAll{ background:url(images/selectAll.png) no-repeat 7px 2px; height:23px; line-height:18px; width:70px; margin:0px; padding:0px;padding-left:15px; color:#13508F;border:1px solid #C5D3EB;}
+*/
+
+
+.attribute-czButton{ float:right; margin-right:10px;width:auto; height:auto; width:auto;position:relative; top:-20px;}
+.attribute-czButton-edit{ float:left; margin-left:10px; background: url(images/attribute-edit.png) no-repeat 0px;padding-left:16px; color: #9a9a9a; }
+.attribute-czButton-edit:hover{ float:left; margin-left:10px; background: url(images/attribute-edit-blue.png) no-repeat 0px;padding-left:16px; color: #13508F;}
+.attribute-czRefresh-edit{ float:left; margin-left:10px; background: url(images/cz-refresh.png) no-repeat 0px;padding-left:16px; color: #9a9a9a; }
+.attribute-czRefresh-edit:hover{color: #13508F;}
+.attribute-czButton-save{ float:left; margin-left:10px; background: url(images/attribute-save.png) no-repeat 0px;padding-left:16px; color: #9a9a9a; }
+.attribute-czButton-save:hover{ float:left; margin-left:10px; background: url(images/attribute-save-blue.png) no-repeat 0px;padding-left:16px; color: #13508F;}
+.attribute-czButton-cancel{ float:left; margin-left:10px; background: url(images/attribute-cancel.png) no-repeat 0px;padding-left:16px; color: #9a9a9a; }
+.attribute-czButton-cancel:hover{ float:left; margin-left:10px; background: url(images/attribute-cancel-blue.png) no-repeat 0px;padding-left:16px; color: #13508F;}
+.attribute-czButton-shouquan{ float:left; margin-left:10px; background: url(images/attribute-shouquan.png) no-repeat 0px;padding-left:16px; color: #9a9a9a; }
+.attribute-czButton-shouquan:hover{ float:left; margin-left:10px; background: url(images/attribute-shouquan-blue.png) no-repeat 0px;padding-left:16px; color: #13508F;}
+.attribute-czButton-shouhui{ float:left; margin-left:10px; background: url(images/attribute-shouhui.png) no-repeat 0px;padding-left:16px; color: #9a9a9a; }
+.attribute-czButton-shouhui:hover{ float:left; margin-left:10px; background: url(images/attribute-shouhui-blue.png) no-repeat 0px;padding-left:16px; color: #13508F;}
+
+.attribute-czButton-warn-edit{ float:left; margin-left:10px; background: url(images/warn-edit.png) no-repeat 0px 6px;padding-left:16px; color: #9a9a9a; }
+.attribute-czButton-warn-edit:hover{ float:left; margin-left:10px; background: url(images/warn-edit-blue.png) no-repeat 0px 6px;padding-left:16px; color: #13508F;}
+.attribute-czButton-warn-add{ float:left; margin-left:10px; background: url(images/warn-add.png) no-repeat 0px 7px;padding-left:16px; color: #9a9a9a; }
+.attribute-czButton-warn-add:hover{ float:left; margin-left:10px; background: url(images/warn-add-blue.png) no-repeat 0px 7px;padding-left:16px; color: #13508F;}
+.attribute-czButton-warn-delete{ float:left; margin-left:10px; background: url(images/warn-delete.png) no-repeat 0px 7px;padding-left:16px; color: #9a9a9a; }
+.attribute-czButton-warn-delete:hover{ float:left; margin-left:10px; background: url(images/warn-delete-blue.png) no-repeat 0px 7px;padding-left:16px; color: #13508F;}
+.attribute-czButton-warn-view{ float:left; margin-left:10px; background: url(images/warn-veiw.png) no-repeat 0px 5px;padding-left:16px; color: #9a9a9a; }
+.attribute-czButton-warn-view:hover{ float:left; margin-left:10px; background: url(images/warn-view-blue.png) no-repeat 0px 5px;padding-left:16px; color: #13508F;}
+
+.attribute-czButton a:hover{text-decoration:none;}
+
+
+.blueFrame_index{ border:1px solid #B0CBEC; background:#FAFAFA url(images/blueFrame_bj_index.jpg) repeat-x;}/* 带渐变的蓝色边框 */
+.blueFrame{ border:1px solid #B0CBEC; background:#FFFFFF url(images/blueFrame_bj.jpg) repeat-x;}/* 带渐变的蓝色边框白色背景 */
+.attributeFrame{border:1px solid #B0CBEC; background:#FFFFFF;}
+
+
+/* 表格样式 */
+.dataGrid{width:100%;table-layout: fixed; border:1px solid #CAD4EF; margin-left:auto; margin-right:auto;}
+.dataGrid th{ padding:0px; padding-left:3px;white-space: nowrap;text-align:left;font-weight:normal;}
+.dataGrid td{ border-collapse:collapse; height:28px; line-height:28px; padding:0 12px 0 2px;white-space: nowrap;overflow:hidden;-o-text-overflow: ellipsis;	text-overflow:ellipsis; text-align:left; padding-left:3px;}
+.dataGrid tr.titleTr_index{ height:30px; line-height:30px;color:#676666; }
+.dataGrid tr.titleTr th{ height:25px; line-height:25px;color:#676666; background:#E6ECFA url(images/dataGrid_bj.png) repeat-x; border-bottom:1px solid #CAD4EF; border-right:0px; border-left:0px; }
+.allShow td{ text-align:center; border-top:1px dashed #dee4f4; height:25px; line-height:25px; background:#FFFFFF;}
+/* 订阅的列表table */
+.dataGrid-warn{width:100%;table-layout: fixed; border:1px solid #CAD4EF; margin-left:auto; margin-right:auto;}
+.dataGrid-warn th{ padding:0px; padding-left:3px;white-space: nowrap;text-align:left;font-weight:normal;}
+.dataGrid-warn td{ border-collapse:collapse; height:25px; line-height:25px; padding:0 12px 0 2px;white-space: nowrap;overflow:hidden;-o-text-overflow: ellipsis;	text-overflow:ellipsis; text-align:left; padding-left:3px;}
+.dataGrid-warn tr.titleTr th{ height:25px; line-height:25px;color:#676666; background:#E6ECFA url(images/dataGrid_bj.png) repeat-x; border-bottom:1px solid #CAD4EF; border-right:0px; border-left:0px; }
+/* 订阅的属性table */
+.property-table-warn {width:90%; BORDER-COLLAPSE: separate;margin:10px;}
+.property-table-warn td {height: 30px;line-height: 30px;	text-align:left;}
+.property-table-warn .titleyan{color:#999;padding:3px 0;white-space:nowrap;}
+/*属性更新中的table*/
+.property-table {width:90%; BORDER-COLLAPSE: separate; padding-bottom:8px;}
+.property-table td {height: 20px;line-height: 20px;	text-align:left;}
+.property-table .titleyan{color:#999;padding:3px 0;white-space:nowrap;}
+/* fieldset样式 */
+fieldset{text-align:center;position:relative;top:-7px;margin-left:auto;	margin-right:auto;width:100%; height:100%;border:1px solid #B0CBEC;}
+.fieldset-div{text-align:center;position:relative;top:-7px;margin-left:auto;margin-right:auto;width:100%; height:100%;border:1px solid #B0CBEC;}
+fieldset legend{ color:#13508F; font-weight:bold; padding:0 10px;text-align:center; white-space:nowrap; margin:0 auto;}
+fieldset span{ color:#333333}
+.fenlei td{ height:35px;line-height:0px;}
+.fenlei fieldset{ border:0px; border-top:1px solid #B0CBEC; margin:2px 20px; position:relative; top:2px; width:98%; margin-left:auto; margin-right:auto; height:0px;}
+.fenlei fieldset legend{ position:relative; top:0px \9;}
+
+/* 所在位置 */
+#list-operation{ width:96%; margin-left:auto; margin-right:auto; background: url(images/location.png) no-repeat 0px center;height:30px; line-height:30px; text-align:left;border-bottom:1px solid #d1dcee;padding-left:22px;}
+#list-operation h2{font-size:12px;margin-bottom:0;line-height:30px;}
+#list-operation img{ position:relative; top:0px; margin-right:5px;margin-left:2px;}
+#list-operation a{ color:#13508F; cursor:pointer;}
+/* 分页 */
+#pagination {text-align: right;margin-bottom: 10px;color: #666;vertical-align: middle;	width:98%; margin-left:auto; margin-right:auto;}
+#pagination strong {border: #669ACC 1px solid;padding: 2px 8px 2px 8px;display: inline-block;line-height: 16px;font-weight: bold;line-height: 18px;	margin: 2px;color: white;background-color: #669ACC;white-space: nowrap;}
+#pagination a {border: #69C 1px solid;padding: 2px 8px 2px 8px;margin: 2px;display: inline-block;line-height: 16px;color: #669ACC;text-decoration: none;	white-space: nowrap;}
+#pagination .btnDisable{border: #999 1px solid;color:#999;}
+/* 左边树形菜单 */
+.mnav ul{height:30px;margin:0px 0px 0px 2px;background: url(images/mtab_bj.png) repeat-x;border-bottom:1px solid #C7DAF1;}
+.mnav li {cursor:pointer;}
+.mnav li a{color:#0055bb;text-decoration:none;}
+.mtab{height:30px;float:left;text-align:center;list-style:none;line-height:30px;border:#C7DAF1 1px solid;border-top-width:0px;border-bottom-color:#D8E0E9;margin:0px -1px -1px 0px;background: url(../../images/box/mtab_bj.png) repeat-x;}
+.mtabon{height:28px;float:left;text-align:center;list-style:none;line-height:28px;border:#C7DAF1 1px solid;border-bottom-color:#FAFAFA;border-top:2px solid #0B7AAA;margin:0px -1px -1px 0px;background:url(../../images/box/mtab_bj_on.png) repeat-x; font-weight:bold;}
+.mnav .selectMore{ float:right; margin-right:10px; color:#0066FF; height:30px; line-height:30px;}
+/* 订阅告警的有tab分栏的情况 */
+.mtab-tab{height:24px; line-height:24px; background:none; border:0px;float:left;text-align:center;list-style:none;border-bottom-color:#D8E0E9;margin:0px -1px -1px 0px;padding:0 10px;}
+.mtabon-tab{ height:24px; line-height:24px;float:left;text-align:center;list-style:none;border:#C7DAF1 1px solid;border-bottom-color:#FAFAFA;margin:0px -1px -1px 0px;background:url(../../images/box/mtab_bj_on.png) repeat-x; font-weight:bold; padding:0 10px;}
+
+/* 公用样式定义 -------------end------------------------------------------------------- */
+
+
+/* tab分栏 */
+.tab-div{ width:98%; margin-left:auto; margin-right:auto; border:1px solid #B0CBEC;  position:relative; top:10px;}
+/* 法规遵循选择 */
+.fagui-select-div{width:100%;text-align:left; height:92%;overflow-Y:auto;overflow-X:hidden;}
+.fagui-select{ margin-left:100px; font-size:13px; color:#13508F; font-weight:bold; margin-bottom:20px; margin-top:10px;}
+.fagui-select span{ display:block; padding:10px 10px 10px 20px; font-size:12px; font-weight:normal;}
+/* 审计查询首页 */
+#search-text{height: 350px; margin: 0px 0px 0px 0px; text-align: center;margin-left: 20px;}
+.lii {list-style-type: none;float:left;margin-right:20px;}
+.auditevent a {font-family:宋体;font-size:14px;font-weight:normal;font-style:normal;text-decoration:underline;color:blue;}
+.auditevent .onselect {font-family:宋体;font-size:14px;font-weight:bold;font-style:normal;text-decoration:none;color:#000000;}
+.selectsearch {margin-left: 25px;float: left;position: relative;background: url(images/solr-input-bj.png) repeat-x;width: 100px;height: 30px;line-height: 30px;vertical-align: middle;text-align: center;padding: 0px;border: 0px;}
+.selectspan {width: 100px;cursor: pointer;vertical-align: middle;border: 0px;padding: 0px;margin: 0px;color: #FFFFFF;}
+#sub_list {position: absolute;top: 31px;left: 0;width: 99px;background: #4BA6E5; z-index:1001;}
+#sub_list ul {display: block;background: #4BA6E5;}
+#sub_list ul li {border-bottom: 1px solid #E1E1E1;height: 28px;line-height: 28px;}
+#sub_list ul li a {display: block;text-decoration: none; color:#FFFFFF;}
+#sub_list ul li a:hover {background: #0D80D0;}
+.hidden {display: none;}
+.solr-input {background: url(images/solr-input-bj.png) repeat-x;width: 520px;height: 30px;line-height: 30px;vertical-align: middle;text-align: center;float: left;position: relative;}
+.searchMainInput {float: left;width: 430px;height: 26px;line-height: 26px;height: 26px \9;padding: 0px;margin: 2px;vertical-align: middle;text-align: left;margin-left: -1px;margin-top: 2px;border: 0px;padding-left: 5px;color: #000000;}
+.searchActionDiv {float: left;position: relative;margin-left: -85px;}
+.searchActionDiv li {line-height: 28px;vertical-align: middle;}
+.sorl-button-search {width: 85px;height: 30px;padding: 0px;font-size: 13px;background: url(images/solr-input-bj.png) repeat-x;color: white;margin: 0 10px 0 0;border: 0px;cursor: pointer;}
+#search-text h3 {font-family: "Trebuchet MS", Verdana, sans-serif;font-size: 12px;margin: 0 0 10px 32px;padding-left:8px;padding-bottom:6px;border-bottom: 1px dashed #bbbbbb;width:86%;text-align:left;}
+/* 审计查询结果页面 */
+#solr_search{ text-align:left; margin-left:10px;}
+.selectsearch-banner {margin-left: 25px;float: left;position: relative;background: url(images/solr-input-bj.png) repeat-x;width: 100px;height: 28px;line-height: 28px;vertical-align: middle;text-align: center;padding: 0px;border: 0px;}
+.selectsearch li,.selectsearch-down li,.selectsearch-banner li,.selectsearch-banner-down li {list-style: none}
+.selectsearch img,.selectsearch-down img,.selectsearch-banner img,.selectsearch-banner-down img {border: 0}
+.selectsearch a,.selectsearch-down a,.selectsearch-banner a,.selectsearch-banner-down a {color: #FFFFFF;}
+.selectsearch a:hover,.selectsearch-down a:hover,.selectsearch-banner a:hover,.selectsearch-banner-down a:hover {color: #FFFFFF;}
+.solr-input-banner {background: url(images/solr-input-bj.png) repeat-x;width: 520px;height: 28px;line-height: 28px;vertical-align: middle;text-align: center;	float: left;position: relative;}
+.searchMainInput-banner {float: left;width: 430px;height: 24px;line-height: 24px;padding: 0px;margin: 2px;vertical-align: middle;text-align: left;margin-left: -1px;margin-top: 2px;border: 0px;padding-left: 5px;color: #000000;}
+.sorl-button-search-banner {width: 85px;height: 28px;padding: 0px;font-size: 13px;background: url(images/solr-input-bj.png) repeat-x;color: white;margin: 0 10px 0 0;border: 0px;cursor: pointer;}
+.banner_div2_left a { padding-right:5px;}
+.banner_div2_left a img{ margin-right:4px;}
+.banner_div2_right{ width:98%; margin-left:auto; margin-right:auto; text-align:left;}
+
+
+/* 修改（2014-11-17）  ---------------------------------------------------------------------------------------------------------- */
+/* 左右两栏 */
+#mtree{border:1px solid #B0CBEC; background:#FFFFFF  url(images/blueFrame_bj.jpg) repeat-x;-moz-border-radius: 3px;border-radius: 3px;}
+#main1{
+	border:1px solid #B0CBEC; 
+	background:#FFFFFF url(images/blueFrame_bj.jpg) repeat-x;
+	-moz-border-radius: 3px;
+	border-radius: 3px; 
+	text-align:left;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+
+/*简介页面*/
+.guideInfoDiv{
+    height:200px;
+    width:90%;
+    margin-left:30px;
+    margin-top:0px;
+    padding-top:0px;
+    font-size:14px; 
+    line-height:30px;
+    text-align:left;
+}
+.li-jj{
+	 list-style-type:square; 
+	 margin:0px;
+	 padding:10px;
+	 margin-left:100px;
+	 height:15px;
+	 color:#335f86;
+}
+.li-jj span{
+	 text-decoration:none;
+	 border:0px solid #F1F1F1;
+	 margin:0px;
+	 padding-left:15px;
+	 padding-right:0px;
+	 padding-top:0px;
+	 padding-bottom:0px;
+	 position:relative;
+	 top:0px;
+	 left:-1px;
+}
+
+/**首页订阅规则列表*/
+#sysCountInfo{
+	min-width: 135px; 
+	min-height: 145px; 
+	height:52%; 
+	margin: 0 auto;
+	padding-right:1px;
+}
+
+#sysCountInfoList{
+  min-height:122px;
+  height:43%;
+  min-width: 135px;
+  padding-right:1px; 
+}
+
+.homeAuditNum{
+	background:url(images/num.gif) no-repeat center top;
+	text-align:center;
+	vertical-align:middle; 
+	margin-top:-46px; 
+	margin-bottom:33px;
+	margin-left:34px;
+	font:bold 10px 宋体; 
+	color:#E3EEF6;
+	height:15px;
+	line-height:15px;
+}
+
+/* 正在加载中 */
+.background { 
+	width: 100%; 
+	height: 100%; 
+	opacity: 0.4; 
+	filter: alpha(opacity=40); 
+	background:#fff; 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	z-index: 2000; 
+}
+.progressBar { 
+	background: url(images/load_big.gif) no-repeat 10px 10px; 
+	width: 160px; 
+	height: 28px; 
+	position: fixed; 
+	margin-top:200px;
+	left: 42%; 
+	padding: 10px 20px 10px 30px; 
+	text-align: center; 
+	line-height: 15px; 
+	font-weight: bold; 
+	color:#535050;
+	z-index: 2001; 
+}
+
+/* 正在加载中 end */
+
+/* 法规遵循-上一步下一步的导航栏目 */
+.nextStepDiv{position:absolute; bottom:0px; text-align:right; width:100%; border:0px; height:40px;line-height:40px;margin-bottom:0px;}
+.nextStepDiv input{ margin-right:20px;}
+.mainStepDiv{position:absolute; top:40px; bottom:40px;left:45px; right:0px; overflow-Y:auto;overflow-X:hidden;}
+
+/* 首页数据库运行状态分页 */
+#slidesTop .pagination {
+	margin:0 auto;
+	width:100px;
+	text-align:center;
+	position:relative;top:-15px;
+}
+#slidesTop .pagination li {
+	float:left;
+	margin:0 1px;
+	list-style:none;
+}
+#slidesTop .pagination li a {
+	display:block;
+	width:20px;
+	height:0;
+	padding:12px 0 0;
+	border:0;
+	background:url(images/pagination.png) no-repeat;
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+}
+#slidesTop .pagination li.current a {
+	background-position:0 -12px;
+}
+
+#div-search input[type="text"]{width:148px;}
+
+/*规则因子值选择列表*/
+.inputAndSelectDiv{
+	border:1px solid #7F9DB9;
+	height:21px;
+	width:196px;
+	background:white;
+	text-align:left;
+	line-height:21px;
+}
+
+.ruleElementValue_list {
+	position: absolute; 
+	top:24px; 
+	left:0px; 
+	width:196px; 
+	overflow-y:auto; 
+	border:1px solid #7F9DB9;
+	background:#f4f9fc;
+	height:165px;
+}
+
+.elementValueImage{
+    position: absolute; 
+	cursor:pointer;
+	top:1px; 
+	left:176px; 
+	text-align:center;
+	width:18px;
+	height:14px;
+	padding-top:7px;
+	background:url(../../images1/solr-select.png) no-repeat center;
+	border:0px;
+}
+
+.elementValueImage:hover{
+    position: absolute; 
+	cursor:pointer;
+	top:1px; 
+	left:176px; 
+	text-align:center;
+	width:18px;
+	height:14px;
+	padding-top:7px;
+	background:url(../../images1/solr-select-on.png) no-repeat center;
+	border:0px;
+}
+
+.ruleElementValue_list .ulVerticalStyle li a {
+	display: block;
+	text-decoration: none;
+	width:96%;
+	padding-left:5px;
+	color:black;
+}
+
+.ruleElementValue_list .ulVerticalStyle li a:hover {
+	background: #316AC5;
+	color:white;
+}
+
+/* 附加规则管理样式 */
+.yzname{
+	width:150px;
+}
+.yzvalue{
+	width:184px;
+}
+.midd{
+	height:25px;line-height:25px;margin:0px;
+}
+/* 附加规则管理样式 end */
+/*系统首页提示*/
+#tip {
+	position: absolute;
+	right: 0px;
+	bottom:0px;
+	height: 0px;
+	width: 240px;
+	border: 1px solid #CCCCCC;
+	background-color: #eeeeee;
+	padding: 1px;
+	overflow: hidden;
+	display: none;
+	font-size: 12px;
+	z-index: 10;
+}
+#tip p {
+	padding: 6px;
+}
+#tip h1,#detail h1 {
+	font-size: 14px;
+	height: 25px;
+	line-height: 25px;
+	background-color: #0066CC;
+	color: #FFFFFF;
+	padding: 0px 3px 0px 3px;
+}
+#tip h1 a,#detail h1 a {
+	float: right;
+	text-decoration: none;
+	color: #FFFFFF;
+}
+/*系统首页提示 end*/
+
+#Systeminfo .tip{
+	background:#f5ffff;
+	border:1px solid #6d8ca3;
+	padding:5px;
+	line-height:22px;
+	width:100px;
+	z-index:100;
+	text-align:left;
+	}
+
+.searchMainInputsql {
+	float: left;
+	width: 430px;
+	height: 26px;
+	line-height: 26px;
+	height: 26px \9;
+	padding: 0px;
+	margin: 2px;
+	vertical-align: middle;
+	text-align: left;
+	position: relative;
+	left: -26px;
+	margin-top: 0px;
+	border: 0px;
+	padding-left: 5px;
+	color: #000000;
+}
+
+.sql-down {
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	position: relative;
+	margin-top: 3px;
+	margin-left: -30px;
+	background: url("images/solr-sqlinput-down.png");
+	float: left;
+}
+
+.sql-up {
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	position: relative;
+	margin-top: -26px;
+	margin-left: -55px;
+	background: url("images/solr-sqlinput-up.png");
+	float: left;
+}
+
+.sql-info {
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	position: relative;
+	margin-top: 3px;
+	margin-left: -30px;
+	background: url("images/solr-sqlinput-down-info1.gif");
+	float: left;
+}
+	
+.searchMainInputsql-banner {
+	float: left;
+	width: 430px;
+	height: 24px;
+	line-height: 24px;
+	padding: 0px;
+	margin: 2px;
+	vertical-align: middle;
+	text-align: left;
+	position: relative;
+	left: -26px;
+	margin-top: 0px;
+	border: 0px;
+	padding-left: 5px;
+	color: #000000;
+}
+
+.sql-down-banner {
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	position: relative;
+	margin-top: 1px;
+	margin-left: -30px;
+	background: url("images/solr-sqlinput-down.png");
+	float: left;
+}
+
+.sql-up-banner {
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	position: relative;
+	margin-top: -25px;
+	margin-left: -55px;
+	background: url("images/solr-sqlinput-up.png");
+	float: left;
+}
+
+.sql-info-banner {
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	position: relative;
+	margin-top: 2px;
+	margin-left: -30px;
+	background: url("images/solr-sqlinput-down-info1.gif");
+	float: left;
+}
+
+.selectsearch-banner-down {
+	margin-left: 25px;
+	float: left;
+	position: relative;
+	background: url("images/solr-input-bj.png") repeat-x;
+	width: 100px;
+	height: 54px;
+	line-height: 54px;
+	/*height: 17px \9; ie*/
+	vertical-align: middle;
+	text-align: center;
+	padding: 0px;
+	border: 0px;
+}
+.solr-input-banner-down {
+	background: url("images/solr-input-bj.png") repeat-x;
+	width: 520px;
+	height: 54px;
+	line-height: 54px;
+	vertical-align: middle;
+	text-align: center;
+	float: left;
+	position: relative;
+}
+.sorl-button-search-banner-down {
+	width: 85px;
+	height: 54px;
+	padding: 0px;
+	font-size: 13px;
+	background: url("images/solr-input-bj.png") repeat-x;
+	color: white;
+	margin: 0 10px 0 0;
+	border: 0px;
+	cursor: pointer;
+}
+.searchActionDiv-down {
+	float: left;
+	position: relative;
+	margin-left: -85px;
+}
+
+.selectsearch-down {
+	margin-left: 25px;
+	float: left;
+	position: relative;
+	background: url("images/solr-input-bj.png") repeat-x;
+	width: 100px;
+	height: 58px;
+	line-height: 58px;
+	/*height: 17px \9; ie*/
+	vertical-align: middle;
+	text-align: center;
+	padding: 0px;
+	border: 0px;
+}
+
+.sorl-button-search-down {
+	width: 85px;
+	height: 58px;
+	padding: 0px;
+	font-size: 13px;
+	background: url("images/solr-input-bj.png") repeat-x;
+	color: white;
+	margin: 0 10px 0 0;
+	border: 0px;
+	cursor: pointer;
+}
+
+.solr-input-down {
+	background: url("images/solr-input-bj.png") repeat-x;
+	width: 520px;
+	height: 58px;
+	line-height: 58px;
+	vertical-align: middle;
+	text-align: center;
+	float: left;
+	position: relative;
+}
+
+.pop-list-table.checkbox-column {
+	width:30px;
+	text-align:center;
+	padding-left:0px;
+}
+/*ng-cloak*/
+[ng-cloak]{display:none;}

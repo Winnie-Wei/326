@@ -1,0 +1,13 @@
+<div>
+	<div class="about-logo"></div>
+	<div class="about-sysname" ng-bind="cache.about.systemName"></div>
+	<div class="about-info-panel">
+		<div class="about-info-div" ng-repeat="item in cache.about.systemVersionsPre">
+			{{item.name}}.{{item.info}}
+		</div>
+		<div class="about-info-div" ng-repeat="item in cache.about.systemVersionsAft">
+			<div class="about-info-name" ng-bind="item.name + '：'"></div>
+			<div class="about-info-text" ng-bind="item.info"></div>
+		</div>
+	</div>
+</div>

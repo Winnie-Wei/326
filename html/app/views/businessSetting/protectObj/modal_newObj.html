@@ -1,0 +1,38 @@
+<div class="row pdb20"> 
+	<form class="col-md-12 form-horizontal">
+		<div class="clearfix mgb10">
+			<label class="control-label col-lg-3 txt-right">保护对象类型：<span class="sign-must">*</span></label>
+			<div class="col-md-9">
+				<label class="radio-inline control-label">
+				  <input type="radio" name="protectObjType" ng-model="initData.protectInfo.object_type" value="1">数据库分组  
+				</label>
+				<label class="radio-inline control-label">
+				  <input type="radio" name="protectObjType" ng-model="initData.protectInfo.object_type" value="2">数据库集群（节点之间共享资产）  
+				</label>
+			</div>
+		</div>
+		<div class="clearfix mgb10">
+			<label class="control-label col-lg-3 txt-right">名称/前缀：<span class="sign-must">*</span></label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" placeholder="该名称/前缀用于在本系统中显示" maxlength="15" maxlength="15" ng-model="initData.protectInfo.name"> 
+			</div>
+		</div>
+		<div class="clearfix mgb10">
+			<label class="control-label col-lg-3 txt-right">数据库类型：<span class="sign-must">*</span></label>
+			<div class="col-md-9">
+				<label class="radio-inline control-label">
+				  <input type="radio" name="dbType" ng-model="initData.protectInfo.db_type" value="oracle">Oracle 
+				</label>
+				<label class="radio-inline control-label">
+				  <input type="radio" name="dbType" ng-model="initData.protectInfo.db_type" value="sqlserver">SQL Server 
+				</label>
+				<label class="radio-inline control-label">
+				  <input type="radio" name="dbType" ng-model="initData.protectInfo.db_type" value="mysql">MySQL 
+				</label>
+				<label class="radio-inline control-label">
+				  <input type="radio" name="dbType" ng-model="initData.protectInfo.db_type" value="db2">DB2 
+				</label>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,132 @@
+<div class="block-container"  ng-init="protectInfoInit();" style="position:relative;width:100%;height:100%;">
+	<!-- 左侧菜单 -->
+	<div class="sub-sidebar">
+		<ul class="pd0">
+	        <li class="sub-sidebar-back" ng-click="backToList();"><a class="sub-sidebar-back-icon"></a></li>
+	        <li class="sidebar-item" ui-sref="main.protectObjInfo({POid:{{initData.POid}}})">
+	            <a class="sub-sidebar-link sub-active">
+	                <span class="sub-sidebar-name">保护对象信息</span>
+	            </a>
+	        </li>
+	        <li class="sidebar-item" ui-sref="main.assetTab({POid:{{initData.POid}}})"> 
+	            <a class="sub-sidebar-link">
+	                <span class="sub-sidebar-name">资产管理</span>
+	            </a>
+	        </li>
+	        <li class="sidebar-item" ui-sref="main.selectAudit({POid:{{initData.POid}}})">
+	            <a class="sub-sidebar-link">
+	                <span class="sub-sidebar-name">选择性审计</span>
+	            </a>
+	        </li>
+	    </ul>
+	    		
+		<div class="sub-close-box sub-close-show" id="J_btnOfsubPanel" ng-click="closeSubPanel(this);">
+			<div class="sub-close-up"></div>
+		</div>
+	</div>
+	<div class="sub-panel-content" id="J_subPanel">
+			
+		<div class="db-simple-detail">
+			<span class="dbtype-icon-oracle"></span>
+			<span class="db-detail-info">
+				<span>名称：{{initData.headerInfo.name}} | </span>
+				<span>运行状态：{{initData.headerInfo.use_flag == '1' ? '启用' : '禁用'}} | </span>
+				<span>类型：{{initData.headerInfo.db_type}}</span>
+			</span>
+			<div class="db-detail-action">
+				<a role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="editProtectObj();">配置</a>
+				<a role="button" class="btn btn-normal btn-blue btn-xs mgr10">刷新</a>
+			</div>
+		</div>
+		
+		<div class="blue-border-panel sub-container">
+			<div>
+				<div class="colum-title">保护对象信息</div>
+			</div>
+			<div class="clearfix pdl20 mg10">
+				<div class="pull-left pdt5">
+					<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-show="initData.editKey" ng-click="editProtectObj();">编辑</button>
+					<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-hide="initData.editKey" ng-click="saveProtectObj();">保存</button>
+					<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-hide="initData.editKey" ng-click="cancelEdit();">取消</button>
+				</div>
+			</div>
+			<div>
+				<HR class="hr-style"></HR>
+			</div>
+			
+			<div class="row">
+				<form class="col-md-12 input-custom">
+					<div class="clearfix assetDetail-colum mgb10">
+						<span class="form-label">名称：</span>
+						<span class="mgl15" ng-show="initData.editKey" ng-bind="initData.currentObj.name"></span>
+						<span class="mgl15" ng-hide="initData.editKey"><input type="text" ng-model="initData.currentObj.name"/></span>
+					</div>
+					<div class="clearfix assetDetail-colum mgb10">
+						<span class="form-label">业务状态：</span>
+						<span class="mgl15" ng-show="initData.editKey" ng-bind="initData.currentObj.use_flag == '1' ? '启用' : '禁用'"></span>
+						<span class="mgl15" ng-hide="initData.editKey">
+							<label class="radio-inline mgt-2"><input type="radio" class="mgt8" name="POstatus" value="1" ng-model="initData.currentObj.use_flag"/>启用</label>
+							<label class="radio-inline mgt-2"><input type="radio" class="mgt8" name="POstatus" value="0" ng-model="initData.currentObj.use_flag"/>禁用</label>
+						</span>
+					</div>
+					<div class="clearfix assetDetail-colum mgb10">
+						<span class="form-label">数据库类型：</span>
+						<span class="mgl15" ng-bind="initData.currentObj.db_type"></span>
+					</div>
+					<div class="clearfix assetDetail-colum mgb10">
+						<span class="form-label">保护对象类型：</span>
+						<span class="mgl15" ng-bind="initData.currentObj.object_type == '1' ? '集群' : '分组' "></span>
+					</div>
+					
+					<div class="clearfix mgb10" ng-if="initData.currentObj.nodeList.length !== 0">
+						<span class="form-label">节点列表：</span>
+						<div class="col-lg-9 col-md-9 mgt5" >
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>名称</th>
+										<th>运行状态</th>
+										<th>IP地址</th>
+										<th>端口号</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in initData.currentObj.nodeList">
+										<td style="width:320px">
+											<span ng-bind="item.node_name" ng-hide="item.nodeEditflag"></span>
+											<input type="text" ng-show="item.nodeEditflag" ng-model="item.node_name"/>
+										</td>
+										<td style="width:200px">
+										   <span ng-hide="item.nodeEditflag">
+										   	  <img src="/capaa/html/app/src/images/icons/actStatus{{item.node_use_flag}}.png" class="mgr10 mgt-2"/>
+										      {{item.node_use_flag === '1' ? '启用' : '禁用'}}
+										   </span>
+										   <span ng-show="item.nodeEditflag">
+										   	  <label class="radio-inline"><input type="radio" name="nodeStatus{{item.node_name}}" value="1" ng-model="item.node_use_flag"/>启用</label>
+											  <label class="radio-inline"><input type="radio" name="nodeStatus{{item.node_name}}" value="0" ng-model="item.node_use_flag"/>禁用</label>
+										   </span>
+										</td>
+										<td>
+											<span ng-bind="item.host" ng-hide="item.nodeEditflag"></span>
+											<input type="text" ng-show="item.nodeEditflag" ng-model="item.host"/>
+										</td>
+										<td>
+											<span ng-bind="item.port" ng-hide="item.nodeEditflag"></span>
+											<input type="text" ng-show="item.nodeEditflag" ng-model="item.port"/>
+										</td>
+										<td style="width:150px">
+											<a class="table-btn" ng-hide="item.nodeEditflag" role="button" ng-click="editNode(item);">编辑</a>
+											<a class="table-btn" ng-show="item.nodeEditflag" role="button" ng-click="cancelNode(item);">取消</a>
+											<a class="table-btn" ng-show="item.nodeEditflag" role="button" ng-click="saveNode(item);">保存</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

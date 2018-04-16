@@ -1,0 +1,129 @@
+/* 通用标签样式统一定义 ------------------start---------------------------------------------------------------------- */
+* {margin:0px;padding:0px;}
+html {overflow-y:auto;overflow-x::auto}
+body {
+	font-size:12px;
+	font-family: Tahoma, Helvetica, Arial, "宋体", sans-serif;
+	color:#404040;
+	background: #F5F7F8;
+	width:100%; 
+	height:100%;
+}
+:focus { outline:0; }/*去掉虚线边框*/
+div,dl,dt,dd,ul,ol,li,h1,h2,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;}
+table,td,tr,th{font-size:12px;}
+table {
+	border-collapse: collapse;
+}
+ol,ul {list-style:none;}
+li{list-style-type:none;}
+img{border:0px none;vertical-align:middle;}
+h1,h2,h4,h5,h6{font-size:inherit; font-weight:normal;}
+address,cite,code,em,i{font-weight:normal; font-style:normal;}
+/* a标签处理 */
+a {
+    font-size:12px;
+	font-family: Tahoma, Helvetica, Arial, "宋体", sans-serif;
+	text-decoration:none;
+	cursor:pointer;
+}
+a:link, a:visited {
+	text-decoration:none;
+	color:#0055bb;
+}
+a:hover{
+	text-decoration:underline;cursor:pointer;
+}
+/* 点击a标签的虚线框处理 */
+a{blr:expression(this.onFocus=this.blur()); /* IE Opera */ outline:none; /* FF Opera */ } 
+a:focus{-moz-outline-style: none; /* FF */ }
+.typeOn{color:#DF6900;font-weight:bold;}
+/* 点击a标签的虚线框处理 end*/
+/* a标签处理 end*/
+input {
+	padding: 2px;
+	margin-right: 4px;
+	margin-left: 4px;
+	vertical-align: middle;
+	line-height:normal;
+}
+input[type="radio"], input[type="checkbox"]{
+	margin:0 4px;
+}
+input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus{
+	outline:0;
+}
+select {
+	margin:0px 4px;
+	line-height:normal;
+}
+textarea {
+	margin: 0px 4px;	
+	font-size:12px;
+}
+/* 通用标签样式统一定义 ------------------end---------------------------------------------------------------------- */
+
+
+
+/* 公用样式定义 -------------------------------------------------------------------- */
+.hx a,.hx em,.fB{font-weight:bold;}
+.clearfix{*zoom:1;}
+.clearfix:after{display:block; overflow:hidden; clear:both; height:0px; visibility:hidden; content:".";}
+.clear{ display:block; clear:both; height:0px; overflow:hidden;}
+.blue{color:#0066cd;}
+.green{color:#009901;}
+.mr20{ margin-right:20px;}
+.gray{color:#858585;}
+.fr{ float:right;}
+.fl{ float:left;}
+.deepblue{color:#0055BB}
+.doubleLine{ background:#FFFFFF;}
+.singleLine{ background:#F1F2F7;}
+.selclass{background-color:#ffff99;}
+.yuan{-moz-border-radius: 3px;border-radius: 3px;}/* 圆角矩形 */
+input[type="button"]{cursor:pointer; font-size:12px; font-family:"宋体";}
+
+.reStart-host input[type="submit"]{
+	margin: 2rem 0rem 2rem 2rem;
+}
+
+.reStart-all-service #J_host_stop{
+	float: right;
+    margin-right: 10px;
+    width: 100px;
+    margin-top: 10px;
+} 
+
+#service_msg_banner {
+	overflow-y: auto;
+    height: 83%;
+}
+
+.legend-for-table{
+	width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.check-rule{
+	width:12rem;
+}
+/*iconfont*/
+@font-face {
+  font-family: 'iconfont';
+  src: url('fonts/iconfont/iconfont.eot');
+  src: url('fonts/iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/iconfont/iconfont.woff') format('woff'),
+  url('fonts/iconfont/iconfont.ttf') format('truetype'),
+  url('fonts/iconfont/iconfont.svg#iconfont') format('svg');
+}
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale;
+  /*-webkit-text-stroke-width: 0.2px;*/
+}
+

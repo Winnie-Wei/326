@@ -1,0 +1,24 @@
+<div>
+	<table class="table table-bordered table-hover table-layout">
+		<thead>
+			<tr>
+				<th ng-show="hasCheckbox"></th>
+				<th ng-repeat="item in tableHeader"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="text-center listEmpty" ng-show=" tableHeader.length == 0 ">
+                <td colspan="tableHeader.length"><span class="listEmpty-img"></span>没有信息</td>
+            </tr>
+			<tr ng-repeat="item in tableBody">
+				<td class="list-top-checkbox" ng-show="hasCheckbox"><input type="checkbox" value="{{item.id}}" ng-change="selectOne()" ng-model="item.checked"/></td>
+				<td ng-repeat="n in item">
+					<a>{{ n }}</a>
+				</td>
+				<td class="col-operate">
+					<a class="table-btn" role="button" ng-click="tableAction(item);" ng-repeat="item in actionBtn">详情</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

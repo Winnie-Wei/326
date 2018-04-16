@@ -1,0 +1,25 @@
+<div class="row pdb20">
+	<div class="col-lg-12 col-md-12 mgt5">
+		<table class="table table-bordered table-hover table-layout">
+			<thead>
+				<tr>
+					<th></th>
+					<th>保护对象名称</th>
+					<th>运行状态</th>
+					<th>保护对象类型</th>
+					<th>数据库类型</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in cache.objList">
+					<td class="list-top-checkbox"><input type="radio" name="existObj" value="{{item.id}}" ng-model="cache.existObjId"/></td>
+					<td ng-bind="item.name"></td>
+					<td><img src="/capaa/html/app/src/images/icons/actStatus{{item.use_flag}}.png" class="mgr10" style="margin-top:-2px;" />{{item.use_flag == 0 ? '禁用' : '启用'}}</td>
+					<td ng-bind="item.object_type == 1 ? '集群' : '分组' "></td>
+					<td ng-bind="item.db_type"></td>
+				</tr>
+			</tbody>
+		</table>
+		<pager-directive pager="pager"></pager-directive>
+	</div>
+</div>

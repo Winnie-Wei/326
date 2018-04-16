@@ -1,0 +1,225 @@
+<div class="block-container" ng-init="accessInit();" ng-controller="AssetTabCtrl" style="position:relative;width:100%;height:100%;">
+	<!-- 左侧菜单 -->
+	<div class="sub-sidebar">
+		<ul class="pd0">
+	        <li class="sub-sidebar-back" ng-click="backToList();"><a class="sub-sidebar-back-icon"></a></li>
+	        <li class="sidebar-item" ui-sref="main.protectObjInfo({POid:{{initData.POid}}})">
+	            <a class="sub-sidebar-link">
+	                <span class="sub-sidebar-name">保护对象信息</span>
+	            </a>
+	        </li>
+	        <li class="sidebar-item" ui-sref="main.assetTab({POid:{{initData.POid}}})"> 
+	            <a class="sub-sidebar-link sub-active">
+	                <span class="sub-sidebar-name">资产管理</span>
+	            </a>
+	        </li>
+	        <li class="sidebar-item" ui-sref="main.selectAudit({POid:{{initData.POid}}})">
+	            <a class="sub-sidebar-link">
+	                <span class="sub-sidebar-name">选择性审计</span>
+	            </a>
+	        </li>
+	    </ul>
+	    		
+		<div class="sub-close-box sub-close-show" id="J_btnOfsubPanel" ng-click="closeSubPanel(this);">
+			<div class="sub-close-up"></div>
+		</div>
+	</div>
+	
+	<div class="sub-panel-content">
+	
+		<div class="db-simple-detail">
+			<span class="dbtype-icon-oracle"></span>
+			<span class="db-detail-info">
+				<span>名称：{{initData.headerInfo.name}} | </span>
+				<span>运行状态：{{initData.headerInfo.use_flag == '1' ? '启用' : '禁用'}} | </span>
+				<span>类型：{{initData.headerInfo.db_type}}</span>
+			</span>
+		</div>
+		
+		<div class="blue-border-panel sub-container">
+			<div>
+				<div class="colum-title">资产集合列表</div>
+			</div>
+			<div class="clearfix">
+				<div class="clearfix action-bar pdl20 mg10 pdr10">
+					<div class="pull-left mgr10 form-horizontal mgl20">
+						<label class="checkbox"> 
+							<input type="checkbox" ng-model="initData.assetList.checkAll" ng-change="assetList_selectAll( initData.assetList.checkAll, cache.assetList )" />
+						</label>
+					</div>
+					<div class="pull-left pdt5">
+						<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="deleteAsset('connect');">删除</button>
+					</div>
+				</div>
+				<div>
+					<HR class="hr-style"></HR>
+				</div>
+				<div>
+					<table class="table table-bordered table-hover table-layout">
+						<thead>
+							<tr>
+								<th></th>
+								<th><a class="order-th" ng-click="getAssetList('name');">资产集合名称<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('name',initData.tableOrder);"></i></span></a></th>
+								<th><a class="order-th" ng-click="getAssetList('type');">资产属性<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('type',initData.tableOrder);"></i></span></a></th>
+								<th><a class="order-th" ng-click="getAssetList('label');">敏感标签<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('label',initData.tableOrder);"></i></span></a></th>
+								<th><a class="order-th" ng-click="getAssetList('level');">审计级别<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('level',initData.tableOrder);"></i></span></a></th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat=" item in cache.assetList" ng-dblclick="getAssetNodes(item);">
+								<td class="list-top-checkbox"><input type="checkbox" name="assetListId"  value="{{item.id}}" ng-change="assetList_selectOne( cache.assetList )" ng-model="item.checked"/></td>
+								<td ng-bind="item.name"></td>
+								<td ng-bind="item.asset_attr"></td>
+								<td ng-bind="item.lable_level"></td>
+								<td ng-bind="item.audit_level"></td>
+								<td class="col-operate">
+									<a class="table-btn" role="button" ng-click="">详情</a>
+									<a class="table-btn" role="button" ng-click="editAssetInfo(item);">编辑</a>
+									<a class="table-btn" role="button" ng-click="deleteAsset('connect',item);">删除</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<pager-directive pager="pager" func="''" format-state="''" pslgst="pslgst"></pager-directive>
+				</div>
+			</div>
+			<div>
+				<div>
+					<div class="colum-title">资产集合详情</div>
+				</div>
+				<div class="clearfix action-bar pdr10 pdl20 mg10">
+					<div class="pull-left pdt5">
+						<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-show="initData.assetDetail_Edit && initData.conn_type === '0'" ng-click="assetDetail_Edit();">编辑</button>
+						<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-hide="initData.assetDetail_Edit" ng-click="assetDetail_Edit_Cancel();">取消</button>
+						<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-hide="initData.assetDetail_Edit">添加</button>
+						<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-show="initData.asset_accurate" ng-click="asset_accurate( false);">精确显示</button>
+						<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-hide="initData.asset_accurate" ng-click="asset_accurate( true );">全部显示</button>
+					</div>
+					<div class="pull-right pdt5">
+						<a role="button" class="btn btn-normal btn-blue btn-xs pull-right" ng-click="getProbeList();">搜索</a>
+						<div class="pull-right mgr10">
+							<input type="text" class="form-control action-search-style" placeholder="请输入搜索内容" ng-model="initObj.srcInfo.srcText">
+						</div>
+						<div class="pull-right mgr10 action-select-div">
+							<select class="form-control action-select-style" ng-model="initObj.srcInfo.srcSelect">
+								<option value="all" ng-selected="true">全部</option>
+								<option value="mirror_name">名称/分组名称</option>
+								<option value="run_status">运行状态</option>
+								<option value="host">数据库类型</option>
+								<option value="run_time">数据库版本号</option>
+								<option value="version">IP地址</option>
+								<option value="protect_object">端口号</option>
+							</select> <label class="select-btn"></label>
+						</div>
+					</div>
+				</div>
+				<div>
+					<HR class="hr-style"></HR>
+				</div>
+				<div style="min-height: 700px; padding: 0 10px 10px 10px; overflow: hidden;position:relative;">
+					<div style="width: 240px; min-height: 700px; border: 1px solid #bbb;position:absolute;">
+						<ul id="treeDemo" class="ztree"></ul>
+					</div>
+					<div style="margin-left:250px;height: 100%;">
+						<div style="width: 100%; min-height: 150px; border: 1px solid #bbb; overflow: hidden; padding-bottom: 10px;">
+							<div class="pd10" style="padding-bottom:0;">
+								<a role="button" class="btn btn-normal function-btn mgr10" ng-hide="initData.objNodeSelected === 'obj'" >添加资产</a>
+								<a role="button" class="btn btn-normal function-btn mgr10" ng-hide="initData.objNodeSelected === 'obj'" ng-click="deleteAsset('subset');">删除资产</a>
+								<a role="button" class="btn btn-normal function-btn mgr10" ng-hide="initData.objNodeSelected === 'obj' || initData.objNodeSelected === 'other'" ng-click="getAccessAuto();">自动获取配置</a>
+								<a role="button" class="btn btn-normal function-btn mgr10" ng-hide="initData.objNodeSelected === 'obj' || initData.objNodeSelected === 'other'" ng-click="addAccess();">导入资产</a>
+							</div>
+							<div class="pull-left" style="padding-left: 20px;width:40%;">
+								<div class="assetDetail-colum">
+									<span class="asset-detail-name">名称：</span>
+									<span ng-bind="cache.assetDetailItem.parent_asset_name"></span>
+									<!-- <span ng-hide="initData.assetDetail_Edit">
+										<input type="text" />
+									</span> -->
+								</div>
+								<div class="assetDetail-colum">
+									<span class="asset-detail-name">业务状态：</span>
+									<span ng-bind="cache.assetDetailItem.use_flag === 1 ? '启用' : '禁用' "></span>
+									<!-- <span ng-hide="initData.assetDetail_Edit">
+										<label class="radio-inline mgt-2"><input class="mgt8" type="radio" name="statusLabel" />启用</label>
+										<label class="radio-inline mgt-2"><input class="mgt8" type="radio" name="statusLabel" />禁用</label>
+									</span> -->
+								</div>
+								<div class="assetDetail-colum">
+									<span class="asset-detail-name">敏感标签：</span>
+									<span ng-bind="cache.assetDetailItem.lable_level === 3 ? '高' 
+												 : cache.assetDetailItem.lable_level === 2 ? '中' : '低' "></span>
+									<!-- <span ng-hide="initData.assetDetail_Edit">
+										<label class="radio-inline mgt-2"><input class="mgt8" type="radio" name="senseLabel" />高</label>
+										<label class="radio-inline mgt-2"><input class="mgt8" type="radio" name="senseLabel" />中</label>
+										<label class="radio-inline mgt-2"><input class="mgt8" type="radio" name="senseLabel" />低</label>
+									</span> -->
+								</div>
+								<div class="assetDetail-colum">
+									<span class="asset-detail-name">审计级别：</span>
+									<span ng-bind="cache.assetDetailItem.audit_level === 3 ? '高' 
+												: cache.assetDetailItem.audit_level === 2 ? '中' : '低' "></span>
+									<!-- <span ng-hide="initData.assetDetail_Edit">
+										<label class="radio-inline mgt-2"><input class="mgt8" type="radio" name="auditlevel" />高</label>
+										<label class="radio-inline mgt-2"><input class="mgt8" type="radio" name="auditlevel" />中</label>
+										<label class="radio-inline mgt-2"><input class="mgt8" type="radio" name="auditlevel" />低</label>
+									</span> -->
+								</div>
+							</div>
+							<div class="pull-left" style="padding-left: 20px;width:50%;">
+								<div class="assetDetail-colum">
+									<span class="asset-detail-name">类型：</span>
+									<span ng-bind="cache.assetDetailItem.asset_type"></span>
+								</div>
+								<div class="assetDetail-colum">
+									<span class="asset-detail-name">父节点：</span>
+									<span ng-bind="cache.assetDetailItem.parent_asset_name"></span>
+								</div>
+								<div class="assetDetail-colum">
+									<span class="asset-detail-name">子节点数：</span>
+									<span ng-repeat="n in cache.assetDetailItem.subAssets">{{n.sub_type}}({{n.sub_size}}),</span>
+								</div>
+							</div>
+						</div>
+						<div style="width: 100%; min-height: 540px; border: 1px solid #bbb; margin-top: 10px; padding-top: 10px;">
+							<table class="table table-bordered table-hover table-layout">
+								<thead>
+									<tr>
+										<th><input type="checkbox" ng-model="initData.assetDetail.checkAll" ng-change="assetDetail_selectAll( initData.assetDetail.checkAll, cache.assetDetailLists )" ></th>
+										<th><a class="order-th" ng-click="assetDetailList('de_name');">名称<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('de_name',initData.detailOrder);"></i></span></a></th>
+										<th><a class="order-th" ng-click="assetDetailList('de_type');">类型<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('de_type',initData.detailOrder);"></i></span></a></th>
+										<th><a class="order-th" ng-click="assetDetailList('de_label');">敏感标签<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('de_label',initData.detailOrder);"></i></span></a></th>
+										<th><a class="order-th" ng-click="assetDetailList('de_level');">审计级别<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('de_level',initData.detailOrder);"></i></span></a></th>
+										<th><a class="order-th" ng-click="assetDetailList('de_nodetype');">子节点类型<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('de_nodetype',initData.detailOrder);"></i></span></a></th>									
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat=" item in cache.assetDetailLists ">
+										<td class="list-top-checkbox"><input type="checkbox" value="{{item.id}}" ng-change="assetDetail_selectOne( cache.assetDetailLists )" ng-model="item.checked"></td>
+										<td ng-bind="item.name"></td>
+										<td ng-bind="item.type"></td>
+										<td ng-bind="item.label"></td>
+										<td ng-bind="item.level"></td>
+										<td ng-bind="item.nodetype"></td>
+										<td class="col-operate"><a class="table-btn" role="button">详情</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="J_confirm" confirm-div></div>
+		<div id="J_accessGet" modal-directive >
+			<div ng-include="'views/businessSetting/protectObj/modal_accessGet.html'"></div>
+		</div>
+		<div id="J_accessAdd" modal-directive >
+			<div ng-include="'views/businessSetting/protectObj/modal_accessAdd.html'"></div>
+		</div>
+		<div id="J_editAssetInfo" modal-directive >
+			<div ng-include="'views/businessSetting/protectObj/modal_editAssetInfo.html'"></div>
+		</div>
+	</div>
+</div>

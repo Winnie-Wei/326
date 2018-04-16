@@ -1,0 +1,155 @@
+<div class="header">
+    <nav class="navbar nav-blue navbar-fixed-top navbar-self" ng-init="initHeader()">
+        <!-- <div class="container-fluid nav-header">
+            <div class="nav-header-left">
+                <span>{{headerDate}}</span>
+                <span>客服热线： 400-711-8011</span>
+                <span class="pointer" ng-mouseover="hover = true" ng-mouseleave="hover = false"><i class="icon icon-wechat"></i>关注我们</span>
+            </div>
+            <div class="nav-header-right dropdown">
+                <a class="dropdown-toggle toggle-title" ng-click="changeArrow();">{{cache.sysUser}}<i class="icon-header-arrowDown" id="J_headerArrow"></i></a>
+                <ul class="dropdown-menu toggle-menu" id="J_headerSubmenu" style="display:none;">
+                    <li><a ng-click="showAboutUs();changeArrow();">关于</a></li>
+                    <li><a href="javascript:openServerInfo();" ng-click="changeArrow();">重启服务</a></li>
+                    <li><a href="/capaa/usermanage/goto_update_password.do" ng-click="changeArrow();">修改密码</a></li>
+                    <li><a href="javascript:logout_now();" ng-click="changeArrow();">退出</a></li>
+                </ul>
+            </div>
+        </div>
+        <div ng-show="hover" style="position:absolute;top:28px;left:300px;z-index:3999;"><img src="/capaa/html/app/src/images/qrcode.jpg" style="width:200px;height:200px;"/></div> -->
+        <div class="container-fluid navbar-title-content">
+            <!-- 左上产品LOGO -->
+            <a class="navbar-brand navbar-logo pdt12" ui-sref="main.home">
+                <div class="logo-icon">
+                    <img class="" src="/capaa/html/app/src/images/logo.png" style="width:120px;height:auto;margin-left:5px;" alt="LOGO">
+                </div>
+            </a>
+            <!-- 收起状态下的导航 -->
+            <div class="navbar-header" style="height:63px;">
+                <a role="button" class="navbar-toggle collaptest" data-toggle="collapse" data-target="#J_fixedNavbar">
+                    <span class="sr-only">收起后的导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+            </div>
+            <div id="J_fixedNavbar" class="navbar-collapse collapse">
+                <div class="navbar-left">
+                    <h2 class="header-sysName" ng-bind="sysTitleName">数据库安全审计系统</h2>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+					<li >
+						<a href="/capaa/auditsession/mainpage.do" >首页</a>
+					</li>
+					<li ng-class="{'active':cache.selectedIndex == header.key}" ng-repeat="header in cache.firstHeaderHrefs track by header.key">
+                        <a ui-sref="{{header.state}}" ng-click="setSecondHrefs($index)">{{header.label}}</a>
+                    </li>
+                    <li>
+						<a href="/capaa/auditsearch/index.do" >审计查询</a>
+					</li>
+					<li>
+						<a href="/capaa/report/index.do" >报表管理</a>
+					</li>
+					<li>
+						<a href="/capaa/warnsubs/warnsubs_info.do" >订阅与告警</a>
+					</li>
+					<li>
+						<a href="/capaa/netAudit/monitor/portMonitor.do" >系统资源</a>
+					</li>
+					<li>
+						<a href="/capaa/sytemmanage/systemanage_info.do" >系统管理</a>
+					</li>
+					<li>
+						<a class="dropdown-toggle" ng-click="changeArrow();" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心</a>
+						<ul class="dropdown-menu toggle-menu" id="J_headerSubmenu" style="display:none;">
+		                    <li><a ng-click="showAboutUs();changeArrow();">关于</a></li>
+		                    <li><a href="javascript:openServerInfo();" ng-click="changeArrow();">重启服务</a></li>
+		                    <li><a href="/capaa/usermanage/goto_update_password.do" ng-click="changeArrow();">修改密码</a></li>
+		                    <li><a href="javascript:logout_now();" ng-click="changeArrow();">退出</a></li>
+		                </ul>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- 关于我们 -->
+<div id="J_aboutUs" modal-directive>
+	<div ng-include="'views/common/aboutUs.html'"></div>
+</div>
+
+<div id="J_headerAlert" alert-div></div>
+<!-- 页眉功能 -->
+<!-- <div ng-include="'headerOperate.html'"></div>	 -->
+<form id="formFlag" action="/capaa/keycheck/key_security_check.public" method="post"></form>	
+<div>
+		<div class="wrap_2 jqmID1" id="server_version" style="width: 580px; left: 26%; top: 3.8%; z-index: 3000; opacity: 1;">
+			<div class="div_top move">
+				<h2>重启服务</h2>
+				<div class="div_rit" onclick="closeServerInfo();">X</div>
+				<!-- <a onclick="openConfirm('all','reset')" class="resetAll">重启所有服务</a> -->
+			</div>
+			<div class="div_cen" style="padding:0px; height: 280px; overflow: auto">
+				<div class="tab-div">
+					<div class="mnav">
+						<ul style="margin: 0px;">
+							<li style="border-left-width:0px;" onclick="reStart(this);" class="mtabon" id="J_service"><a class="on">服务</a></li>
+							<li style="border-left-color:#D8E0E9;" onclick="reStart(this);" class="mtab" id="J_host"><a class="" style="color: rgb(0, 85, 187);">主机</a></li>
+						</ul>
+					</div>
+				    <div id="service_msg_banner" ></div>
+			    </div>
+		    </div>
+			<div class="div_bottom">
+		       <div style="float:left;display:inline;width:40px;margin-left:10px">
+		       </div>
+		           <input type="button" class="button_1" value="关闭" onclick="closeServerInfo();">
+		           <div class="clear"></div>
+		       </div>
+		</div>
+		
+		<div class="wrap_2" id="confirm_version"  style="width: 480px; left: 30%; top: 8%; z-index: 3000; opacity: 1;">
+		       <div class="div_top move">
+		           <h2>确认</h2>
+		           <div class="div_rit" onclick="closeConfirm();">X</div>
+		       </div>
+		       <div class="div_cen" style="padding:45px;overflow: auto; font-size: 14px; font-weight: bold;text-align: center;">
+			        <span id="warn_msg_banner" class="confirmInfo" style="display:inline-block"></span>
+			        <span id="stopWarn" class="confirmInfo" style="display:inline-block"></span>
+			        <div id="J_serverProgress" style="display:none;">
+			      		 操作正在进行中，请等候片刻。。。<br><img alt="进度条" src="../images1/progress.gif">
+			        </div>
+		       </div>
+		       <div class="div_bottom">
+			       <div style="float:left;display:inline;width:40px;margin-left:10px">
+			       </div>
+			       <input type="button" class="button_1"  value="取消" onclick="closeConfirm();"/>
+			       <input type="button" class="button_1"  value="确认" onclick="ajax()" id="J_confirmBotton"/>
+			       <div class="clear"></div>
+		       </div>
+		</div>
+
+
+
+<!-- 关于 -->
+<div class="wrap_2" id="view_version" style="width: 60%;top: -60px; left: 0;right:0;margin:auto;">
+	<div class="div_top move">
+		<h2>关于</h2>
+		<div class="div_rit" onclick="closeAboutInfo();">X</div>
+	</div>
+	<div class="div_cen"
+		style="padding: 15px; height: 300px; overflow: auto">
+		<span id="result_msg_banner"></span>
+	</div>
+	<div class="div_bottom">
+		<div
+			style="float: left; display: inline; width: 40px; margin-left: 10px">
+		</div>
+		<input type="button" class="button_1" value="关闭"
+			onclick="closeAboutInfo();" />
+		<div class="clear"></div>
+	</div>
+</div>
+<!-- </div> -->
+<!-- 关于 end-->
+</div>

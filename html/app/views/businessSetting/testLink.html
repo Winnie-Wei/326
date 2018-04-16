@@ -1,0 +1,17 @@
+<div class="box modal-testLink">
+	<div class="testLink-left">
+		<div><img src="/capaa/html/app/src/images/icons/test-icon1.png" style="width:50px;"></div>
+		<div>本机</div>
+	</div>
+	<div id="" class="testLink-line" ng-show="testflag">
+		<div id="J_testLoading" class="testLink-line-block"></div>
+	</div>
+	<div class="testLink-line-end" ng-show="!testflag"></div>
+	<div class="testLink-info">地址：{{Obj.init.objInfo.ip}}</br>端口：{{Obj.init.objInfo.port}}</div>
+	<div class="testLink-right">
+		<div><img src="/capaa/html/app/src/images/icons/test-icon2.png" style="width:50px;"></div>
+		<div>数据库</div>
+	</div>
+	<div class="testLink-result" ng-show="testResult == 1"><img src="/capaa/html/app/src/images/icons/success.png" class="icon">{{testLinkMsg}}</div>
+	<div class="testLink-result" ng-show="testResult == 2"><img src="/capaa/html/app/src/images/icons/error.png" class="icon">{{testLinkMsg}}</div>
+</div>

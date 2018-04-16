@@ -1,0 +1,34 @@
+<div class="sidebar whiteTheme" id="J_sidebar">
+	<ul class="pd0" ng-init="init()">
+    	<li class="sidebar-item sidebar-closeBtn">
+	        <a class="sidebar-link txt-center" ng-click="toggleSideBar();">
+	            <span class="icon icon-sidebarBtn iconjusTop"></span>
+	        </a>
+	    </li>
+        <li class="sidebar-item" ng-repeat="item in cache.sideBarHrefs track by item.key" ng-click="keepMargin()" ng-if="!item.hide">
+        	<a class="sidebar-link active" href="{{item.url}}" id="sideItem{{item.key}}">
+                <img src="/capaa/html/app/src/images/sidebar/{{item.state}}.png" class="sidebar-icons iconjus">
+                <span class="sidebar-name">{{item.label}}</span>       
+            </a>
+        </li>
+    </ul>
+    
+    <div ng-mouseover="showTelAndQrcode('on');"  ng-mouseleave="showTelAndQrcode('out');" ng-show="TelAndQrcode">
+	    <div class="sidebar-company">
+	    	<div class="txt-center " style="padding:20px 10px;">
+	    		<span class="icon icon-tel"></span>
+	    		<span class="icon icon-qrcode"></span>
+	    	</div>
+	    	<div class="txt-center sidebar-company-infotxt">2018-12-22 22:22:22</div>
+	    </div>
+	    <div class="sidebar-company sidebar-company-detail" id="J_detailTelAndQrcode">
+	    	<div class="txt-center sidebar-company-infotxt">联系电话</div>
+	    	<div class="txt-center sidebar-company-infotxt">400-711-8011</div>
+	    	<div class="txt-center sidebar-company-infotxt">关注微信</div>
+	    	<div class="txt-center">
+	    		<img src="/capaa/html/app/src/images/qrcode.jpg" style="width:140px;height:140px;"/>
+	    	</div>
+	    	<div class="txt-center sidebar-company-infotxt mgt10">2018-12-22 22:22:22</div>
+	    </div>
+    </div>
+</div>

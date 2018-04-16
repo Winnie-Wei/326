@@ -1,0 +1,23 @@
+<div>
+	<table class="table table-bordered table-hover table-layout">
+		<thead>
+			<tr>
+				<th class="list-top-checkbox"><input type="checkbox" ng-model="initData.addAuditList.checkAll" ng-change="addAuditList_selectAll( initData.addAuditList.checkAll, cache.unSenseAssetList )" ></th>
+				<th><a class="order-th" ng-click="getunSensAssetList('name');">资产集合名称<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('name',initData.addAuditOrder);"></i></span></a></th>
+				<th><a class="order-th" ng-click="getunSensAssetList('type');">资产属性<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('type',initData.addAuditOrder);"></i></span></a></th>
+				<th><a class="order-th" ng-click="getunSensAssetList('label');">敏感标签<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('label',initData.addAuditOrder);"></i></span></a></th>
+				<th><a class="order-th" ng-click="getunSensAssetList('level');">审计级别<span class="order-icon-arrow"><i class="order-icon-init" ng-class="orderArrowClass('level',initData.addAuditOrder);"></i></span></a></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat=" item in cache.unSenseAssetList">
+				<td class="list-top-checkbox"><input type="checkbox" value="{{item.id}}" ng-change="addAuditList_selectOne( cache.unSenseAssetList )" ng-model="item.checked"></td>
+				<td ng-bind="item.conn_name"></td>
+				<td ng-bind="item.filter_type"></td>
+				<td ng-bind="item.filter_condition"></td>
+				<td ng-bind="item.filter"></td>
+			</tr>
+		</tbody>
+	</table>
+	<pager-directive pager="pagers" func="''" format-state="''" pslgst="pslgst"></pager-directive>
+  </div>

@@ -1,0 +1,62 @@
+<div>
+	<div>
+		<button role="button" class="btn btn-normal btn-blue btn-xs mgr10" ng-click="saveAutoSetting( cache.assetObjs );">保存</button>
+	</div>
+	<div>
+		<HR class="hr-pop-style"></HR>
+	</div>
+	<div class="row">
+	    <div class="col-md-12">
+	        <form class="input-custom form-horizontal" name="addRac" novalidate>
+	            <div class="form-group">
+	                <label class="control-label col-md-3 txt-right">服务名/SID：<span class="sign-must">*</span></label>
+	                <div class="col-md-8 mgb10">
+	                    <input class="form-control" type="text" name="racIP" placeholder="请输入数据库的服务名" ng-model="cache.assetObjs.db_sid" required/>
+	                </div>
+	                <label class="control-label col-md-3 txt-right">数据库用户名：<span class="sign-must">*</span></label>
+	                <div class="col-md-8 mgb10">
+	                    <input class="form-control" type="text" name="racPort" placeholder="请输入数据库用户名" ng-model="cache.assetObjs.username" required />
+	                </div>
+	                <label class="control-label col-md-3 txt-right">数据库密码：<span class="sign-must">*</span></label>
+	                <div class="col-md-8">
+	                    <input class="form-control" type="text" name="racSid" placeholder="请输入数据库密码" ng-model="cache.assetObjs.password" required />
+	                </div>
+	                <div class="col-md-offset-3 col-md-9 mgb10">
+						<label class="radio-inline">
+							<input type="radio" name="accountAction" ng-model="cache.assetObjs.save_flag" value="1">不保存该账户(仅使用一次)
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="accountAction" ng-model="cache.assetObjs.save_flag" value="2">保存该账户
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="accountAction" ng-model="cache.assetObjs.save_flag" value="3">通过该账户创建最小权限账户
+						</label>
+					</div>
+					<div class="col-md-offset-3 col-md-2 mgb10">
+						<a role="button" class="btn btn-normal function-btn" ng-click="testJdbcLink();">测试数据库连接</a>
+						<a role="button" class="btn btn-normal function-btn" ng-click="testJdbcLink2();">测试数据库连接2</a>
+					</div>
+					<div class="col-md-offset-2 col-md-9">
+						<div class="modal-testLink">
+							<div class="testLink-left">
+								<div><img src="/capaa/html/app/src/images/icons/test-icon1.png" style="width:50px;"></div>
+								<div>本机</div>
+							</div>
+							<div id="" class="testLink-line" ng-show="testflag">
+								<div id="J_testLoading" class="testLink-line-block"></div>
+							</div>
+							<div class="testLink-line-end" ng-show="!testflag"></div>
+							<div class="testLink-info">地址：{{cache.assetObjs.ip}}</br>端口：{{cache.assetObjs.port}}</div>
+							<div class="testLink-right">
+								<div><img src="/capaa/html/app/src/images/icons/test-icon2.png" style="width:50px;"></div>
+								<div>数据库</div>
+							</div>
+							<div class="testLink-result" ng-show="true"><img src="/capaa/html/app/src/images/icons/success.png" class="icon">123456789987654321</div>
+							<div class="testLink-result" ng-show="testResult == 2"><img src="/capaa/html/app/src/images/icons/error.png" class="icon">{{testLinkMsg}}</div>
+						</div>
+					</div>
+	            </div>
+	        </form>
+	    </div>
+	</div>
+</div>
